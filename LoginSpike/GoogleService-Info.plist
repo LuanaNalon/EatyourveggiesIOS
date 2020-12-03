@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>397957434457-6rgm22prrs9pftl72ko7bappm8r0naum.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.397957434457-6rgm22prrs9pftl72ko7bappm8r0naum</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDdr7Ul4Bli_Vev1cnXaqHVi0MGWMcSGOs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>397957434457</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.luananalon.LoginSpike</string>
+	<key>PROJECT_ID</key>
+	<string>loginspike-47cbc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loginspike-47cbc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:397957434457:ios:3e9afe45a4a634ad303548</string>
+	<key>DATABASE_URL</key>
+	<string>https://loginspike-47cbc.firebaseio.com</string>
+</dict>
+</plist>
