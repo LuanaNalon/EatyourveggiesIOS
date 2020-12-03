@@ -1,0 +1,6 @@
+framework module Pods_LoginSpike {
+  umbrella header "Pods-LoginSpike-umbrella.h"
+
+  export *
+  module * { export * }
+}
