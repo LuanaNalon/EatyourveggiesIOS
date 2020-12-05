@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D5B84AF246D163E5E5F55803 /* Pods_LoginSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */; };
+		E21D13AC257BFE0E00FFD21C /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */; };
 		E24B1D302571C15D00D3A8D3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */; };
 		E24B1D352571CABE00D3A8D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E24B1D342571CABD00D3A8D3 /* GoogleService-Info.plist */; };
 		E2A5AA0A25719BFE00A7A406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA0925719BFE00A7A406 /* AppDelegate.swift */; };
@@ -17,7 +18,6 @@
 		E2A5AA1325719C0100A7A406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A5AA1225719C0100A7A406 /* Assets.xcassets */; };
 		E2A5AA1625719C0100A7A406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A5AA1425719C0100A7A406 /* LaunchScreen.storyboard */; };
 		E2A5AA1F25719CAD00A7A406 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */; };
-		E2A5AA2225719CE900A7A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA2125719CE900A7A406 /* HomeViewController.swift */; };
 		E2A9BD952576CB380017C4DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD942576CB380017C4DE /* Constants.swift */; };
 		E2A9BD982576E6590017C4DE /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD972576E6580017C4DE /* SingUpViewController.swift */; };
 		E2B8D175257BE24100248030 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8D174257BE24100248030 /* EditProfileViewController.swift */; };
@@ -27,6 +27,7 @@
 /* Begin PBXFileReference section */
 		46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28EFD0DB7EA4BD0880DAEEB /* Pods-LoginSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.release.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.release.xcconfig"; sourceTree = "<group>"; };
+		E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E24B1D342571CABD00D3A8D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2A5AA0625719BFE00A7A406 /* LoginSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +39,6 @@
 		E2A5AA1525719C0100A7A406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2A5AA1725719C0100A7A406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E2A5AA2125719CE900A7A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E2A9BD942576CB380017C4DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2A9BD972576E6580017C4DE /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		E2B8D174257BE24100248030 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -113,11 +113,11 @@
 			isa = PBXGroup;
 			children = (
 				E2A5AA0D25719BFE00A7A406 /* ViewController.swift */,
-				E2A5AA2125719CE900A7A406 /* HomeViewController.swift */,
 				E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */,
 				E2A9BD972576E6580017C4DE /* SingUpViewController.swift */,
 				E2B8D174257BE24100248030 /* EditProfileViewController.swift */,
 				E2B8D17E257BE6AD00248030 /* MenuViewController.swift */,
+				E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -246,10 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2A5AA2225719CE900A7A406 /* HomeViewController.swift in Sources */,
 				E2B8D17F257BE6AD00248030 /* MenuViewController.swift in Sources */,
 				E2A5AA1F25719CAD00A7A406 /* LoginViewController.swift in Sources */,
 				E2A9BD982576E6590017C4DE /* SingUpViewController.swift in Sources */,
+				E21D13AC257BFE0E00FFD21C /* LogoutViewController.swift in Sources */,
 				E24B1D302571C15D00D3A8D3 /* Utilities.swift in Sources */,
 				E2A5AA0E25719BFE00A7A406 /* ViewController.swift in Sources */,
 				E2A9BD952576CB380017C4DE /* Constants.swift in Sources */,

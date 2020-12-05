@@ -6,24 +6,35 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 
 class LogoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        logout()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func logout(){
+        do {
+          try Auth.auth().signOut()
+            transitionToHome()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
     }
-    */
+    func transitionToHome() {
+        
+       let viewController =
+        storyboard?.instantiateViewController(identifier:
+        Constants.Storyboard.viewController) as?
+        ViewController
+        
+        view.window?.rootViewController = viewController
+        view.window?.makeKeyAndVisible()
+    }
 
 }

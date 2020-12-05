@@ -11,12 +11,13 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var vButtonAction: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Utilities.styleFilledButton(vButtonAction)
+/*
         vButtonAction.backgroundColor = UIColor.systemBlue
         vButtonAction.layer.cornerRadius = 5
         vButtonAction.layer.borderWidth = 1
         vButtonAction.layer.borderColor = UIColor.systemBlue.cgColor
-        
+ */
     }
 
 

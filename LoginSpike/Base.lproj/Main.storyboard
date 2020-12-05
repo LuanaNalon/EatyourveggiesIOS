@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LoginSpike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="BYZ-38-t0r" customClass="ViewController" customModule="LoginSpike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="15"/>
+            <point key="canvasLocation" x="431.8840579710145" y="14.732142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kMD-VF-AG4">
@@ -219,33 +218,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5f-5K-GPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1299" y="743"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="DCX-r1-TNl">
-            <objects>
-                <viewController storyboardIdentifier="HomeVC" id="ZFo-vj-Kfh" customClass="HomeViewController" customModule="LoginSpike" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WX6-48-bT9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to EYV!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mi-Op-4O5">
-                                <rect key="frame" x="139" y="437.5" width="136" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vj1-yM-89C"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4Mi-Op-4O5" firstAttribute="centerY" secondItem="WX6-48-bT9" secondAttribute="centerY" id="arE-JX-jwB"/>
-                            <constraint firstItem="4Mi-Op-4O5" firstAttribute="centerX" secondItem="WX6-48-bT9" secondAttribute="centerX" id="dGb-cE-2n3"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DoF-5Y-W96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2188" y="328"/>
         </scene>
         <!--ALL-->
         <scene sceneID="vwJ-8n-8RP">
@@ -505,7 +477,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="AccentColor"/>
+                        <color key="barTintColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" systemColor="labelColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
@@ -531,12 +503,34 @@
         <!--Logout-->
         <scene sceneID="5iW-U4-dQ6">
             <objects>
-                <viewController id="V49-Lf-hfD" sceneMemberID="viewController">
+                <viewController id="V49-Lf-hfD" customClass="LogoutViewController" customModule="LoginSpike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iQo-We-DBV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-YE-4aY">
+                                <rect key="frame" x="40" y="84" width="334" height="50.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to exit the application?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMR-h8-0q8">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10j-2C-bVa">
+                                        <rect key="frame" x="0.0" y="20.5" width="334" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="p15-v1-B7o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ua9-YE-4aY" firstAttribute="top" secondItem="p15-v1-B7o" secondAttribute="top" constant="40" id="9wf-8E-o1y"/>
+                            <constraint firstItem="p15-v1-B7o" firstAttribute="trailing" secondItem="ua9-YE-4aY" secondAttribute="trailing" constant="40" id="YCK-8d-wWB"/>
+                            <constraint firstItem="ua9-YE-4aY" firstAttribute="leading" secondItem="p15-v1-B7o" secondAttribute="leading" constant="40" id="euI-yE-6f0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Logout" image="power" catalog="system" id="CIW-c1-tfS"/>
                 </viewController>
@@ -552,9 +546,6 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="power" catalog="system" width="128" height="124"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -17,14 +17,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-     //   setUpElements()
+        setUpElements()
     }
-/*
-    func setUpElements(){
-        Utilities.styleFilledButton(singUpButton)
-        Utilities.styleHollowButton(loginButton)
 
+    func setUpElements(){
+        if(singUpButton != nil) {
+        Utilities.styleFilledButton(singUpButton)
+        }
+        if(loginButton != nil) {
+        Utilities.styleHollowButton(loginButton)
+        }
     }
- */
+ 
 }
 
