@@ -1,13 +1,13 @@
 //
-//  HomeViewController.swift
+//  LogoutViewController.swift
 //  LoginSpike
 //
-//  Created by Luana Nalon on 27/11/2020.
+//  Created by Luana Nalon on 05/12/2020.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class LogoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
