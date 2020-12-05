@@ -509,17 +509,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-YE-4aY">
-                                <rect key="frame" x="40" y="84" width="334" height="50.5"/>
+                                <rect key="frame" x="40" y="104" width="334" height="250"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to exit the application?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMR-h8-0q8">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to exit the application?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMR-h8-0q8">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="krY-Bi-o3U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10j-2C-bVa">
-                                        <rect key="frame" x="0.0" y="20.5" width="334" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="0.0" y="200" width="334" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="HcQ-nS-BfY"/>
+                                        </constraints>
+                                        <state key="normal" title="Logout"/>
+                                        <connections>
+                                            <action selector="logoutTapped:" destination="V49-Lf-hfD" eventType="touchUpInside" id="zbW-md-TWL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -527,16 +536,19 @@
                         <viewLayoutGuide key="safeArea" id="p15-v1-B7o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ua9-YE-4aY" firstAttribute="top" secondItem="p15-v1-B7o" secondAttribute="top" constant="40" id="9wf-8E-o1y"/>
-                            <constraint firstItem="p15-v1-B7o" firstAttribute="trailing" secondItem="ua9-YE-4aY" secondAttribute="trailing" constant="40" id="YCK-8d-wWB"/>
-                            <constraint firstItem="ua9-YE-4aY" firstAttribute="leading" secondItem="p15-v1-B7o" secondAttribute="leading" constant="40" id="euI-yE-6f0"/>
+                            <constraint firstItem="ua9-YE-4aY" firstAttribute="top" secondItem="p15-v1-B7o" secondAttribute="top" constant="60" id="cUm-xN-rF3"/>
+                            <constraint firstItem="ua9-YE-4aY" firstAttribute="leading" secondItem="iQo-We-DBV" secondAttribute="leading" constant="40" id="nmU-Wd-Qsy"/>
+                            <constraint firstItem="p15-v1-B7o" firstAttribute="trailing" secondItem="ua9-YE-4aY" secondAttribute="trailing" constant="40" id="wEC-lX-kmx"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Logout" image="power" catalog="system" id="CIW-c1-tfS"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="10j-2C-bVa" id="Whb-tF-RRc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxe-ZZ-fJm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6042" y="1029"/>
+            <point key="canvasLocation" x="6040.579710144928" y="1028.5714285714284"/>
         </scene>
     </scenes>
     <resources>
