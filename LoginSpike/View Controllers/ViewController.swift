@@ -21,8 +21,13 @@ class ViewController: UIViewController {
     }
 
     func setUpElements(){
+        if(singUpButton != nil) {
         Utilities.styleFilledButton(singUpButton)
+        }
+        if(loginButton != nil) {
         Utilities.styleHollowButton(loginButton)
+        }
     }
+ 
 }
 

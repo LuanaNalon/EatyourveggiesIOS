@@ -1,20 +1,27 @@
 //
-//  HomeViewController.swift
+//  MenuViewController.swift
 //  LoginSpike
 //
-//  Created by Luana Nalon on 27/11/2020.
+//  Created by Luana Nalon on 05/12/2020.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class MenuViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+               if(item.tag == 1) {
+           //your code for tab item 1
+        }
+        else if(item.tag == 2) {
+           //your code for tab item 2
+        }
+            }
 
     /*
     // MARK: - Navigation
