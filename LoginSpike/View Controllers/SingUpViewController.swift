@@ -51,12 +51,12 @@ class SingUpViewController: UIViewController {
                 return "Please fill in all fields."
             }
             //check if the password is secure
-            let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
+            //let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
             
-            if Utilities.isPasswordValid(password) == false {
+           // if Utilities.isPasswordValid(password) == false {
                 //Password isn't secure enough
-               return "Please make sure your password is at least 8 characters, contains a special character and a number."
-            }
+           //    return "Please make sure your password is at least 8 characters, contains a special character and a number."
+            //}
             //todo add method to check an email
             return nil
         }

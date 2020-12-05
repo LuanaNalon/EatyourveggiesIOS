@@ -42,12 +42,12 @@ class LoginViewController: UIViewController {
             return "Please fill in all fields."
         }
 //check if the password is secure
-        let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
+    //    let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
         
-        if Utilities.isPasswordValid(password) == false {
+    //    if Utilities.isPasswordValid(password) == false {
 //Password isn't secure enough
-           return "Please make sure your password is at least 8 characters, contains a special character and a number."
-        }
+     //      return "Please make sure your password is at least 8 characters, contains a special character and a number."
+     //   }
             return nil
     }
     
@@ -55,14 +55,14 @@ class LoginViewController: UIViewController {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
-    func transitionToHome() {
+    func transitionToMenu() {
         
-       let homeviewController =
+       let menuviewController =
         storyboard?.instantiateViewController(identifier:
-        Constants.Storyboard.homeViewController) as?
-        HomeViewController
+        Constants.Storyboard.menuViewcontroller) as?
+        MenuViewController
         
-        view.window?.rootViewController = homeviewController
+        view.window?.rootViewController = menuviewController
         view.window?.makeKeyAndVisible()
     }
     @IBAction func loginTapped(_ sender: Any) {
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
                    self.errorLabel.text = error!.localizedDescription
                    self.errorLabel.alpha = 1
                 }else{
-                    self.transitionToHome()
+                    self.transitionToMenu()
                 }
                 
             }
