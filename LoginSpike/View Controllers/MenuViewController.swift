@@ -14,14 +14,6 @@ class MenuViewController: UITabBarController {
 
         // Do any additional setup after loading the view.
     }
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-               if(item.tag == 1) {
-           //your code for tab item 1
-        }
-        else if(item.tag == 2) {
-           //your code for tab item 2
-        }
-            }
 
     /*
     // MARK: - Navigation
