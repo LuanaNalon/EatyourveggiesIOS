@@ -20,6 +20,7 @@
 		E2A5AA1F25719CAD00A7A406 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */; };
 		E2A9BD952576CB380017C4DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD942576CB380017C4DE /* Constants.swift */; };
 		E2A9BD982576E6590017C4DE /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD972576E6580017C4DE /* SingUpViewController.swift */; };
+		E2AB37CE257D144F00489529 /* veggies.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E2AB37CD257D144F00489529 /* veggies.mp4 */; };
 		E2B8D175257BE24100248030 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8D174257BE24100248030 /* EditProfileViewController.swift */; };
 		E2B8D17F257BE6AD00248030 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8D17E257BE6AD00248030 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E2A9BD942576CB380017C4DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2A9BD972576E6580017C4DE /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
+		E2AB37CD257D144F00489529 /* veggies.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = veggies.mp4; sourceTree = "<group>"; };
 		E2B8D174257BE24100248030 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E2B8D17E257BE6AD00248030 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		FF7AA09354E4242D4163D78B /* Pods-LoginSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.debug.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				E24B1D322571C16700D3A8D3 /* Helpers */,
 				E2A5AA2425719D0300A7A406 /* View Controllers */,
 				E2A5AA0F25719BFE00A7A406 /* Main.storyboard */,
+				E2AB37CC257D142200489529 /* Media */,
 				E2A5AA1225719C0100A7A406 /* Assets.xcassets */,
 				E2A5AA1425719C0100A7A406 /* LaunchScreen.storyboard */,
 				E24B1D342571CABD00D3A8D3 /* GoogleService-Info.plist */,
@@ -120,6 +123,14 @@
 				E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E2AB37CC257D142200489529 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				E2AB37CD257D144F00489529 /* veggies.mp4 */,
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 		E7FADFAE8362B8A70459B223 /* Pods */ = {
@@ -192,6 +203,7 @@
 			files = (
 				E2A5AA1625719C0100A7A406 /* LaunchScreen.storyboard in Resources */,
 				E24B1D352571CABE00D3A8D3 /* GoogleService-Info.plist in Resources */,
+				E2AB37CE257D144F00489529 /* veggies.mp4 in Resources */,
 				E2A5AA1325719C0100A7A406 /* Assets.xcassets in Resources */,
 				E2A5AA1125719BFE00A7A406 /* Main.storyboard in Resources */,
 			);

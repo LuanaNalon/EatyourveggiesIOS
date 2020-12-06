@@ -41,13 +41,70 @@
                                     <constraint firstItem="Qga-tK-qPR" firstAttribute="height" secondItem="XQS-0I-dVM" secondAttribute="height" id="SNU-VQ-BwV"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eat Your Veggies" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axy-as-egv">
+                                <rect key="frame" x="40" y="344" width="334" height="297.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="83"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="350" id="1ag-lG-5Ee"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="3SH-62-4LH"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="4wy-aI-Hxt"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="7ak-s4-8Yf"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="8hu-x5-cmD"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="Bci-9k-Nti"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="DSY-mG-fzv"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="Egx-O1-bAV"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="FFh-D9-5Bm"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="FNI-M9-CwQ"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="400" id="G88-t1-OhX"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="G9U-9m-WNf"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="GPw-5r-YJm"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Gyf-D5-wKL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nLm-LD-ugJ" secondAttribute="trailing" constant="40" id="KWI-MI-kLw"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="Key-Ae-jsQ"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Kkb-Ww-UeB"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="KxZ-j2-GTE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nLm-LD-ugJ" secondAttribute="bottom" constant="40" id="L8f-1j-ZOT"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="M1f-2q-Sw1"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="180" id="Mse-Fy-y37"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Q1P-dd-Stq"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="Rz5-QU-VDk"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="190" id="Sxx-0V-bd0"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="TRf-I7-LFl"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="170" id="V0i-aI-xPs"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="XyH-s8-aqZ"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="Yuv-DM-Ddq"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="ZlW-yA-a0X"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Zql-C3-cTN"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="aQy-jQ-ewC"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="bYI-36-5M0"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="cyh-bp-BXe"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="dga-mu-iTJ"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="eBI-MA-TzI"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="350" id="gcO-TZ-orO"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="hnz-cB-K4O"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="iN0-io-mja"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="iq1-sz-wHN"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="jhd-Ne-ugb"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="kpx-Js-D0x"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="nNk-MW-xyw"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="oIk-d9-86S"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ooV-tp-HW0"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="oy3-p5-jM1"/>
                             <constraint firstItem="nLm-LD-ugJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="p5W-pZ-yTl"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="q0T-6R-uYw"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ql2-39-XmG"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="uGg-Uv-fzE"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="vce-g8-VfW"/>
+                            <constraint firstAttribute="trailing" secondItem="axy-as-egv" secondAttribute="trailing" constant="40" id="xIb-v5-efT"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="xm4-ma-SPY"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="yL3-J6-2tE"/>
+                            <constraint firstItem="axy-as-egv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="yTR-83-19v"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jSW-3m-mI4"/>
@@ -120,13 +177,27 @@
                                     <constraint firstItem="zaR-xv-Ayh" firstAttribute="height" secondItem="EZ2-fb-6F2" secondAttribute="height" id="bHe-Wl-vyr"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-xf-dRj">
+                                <rect key="frame" x="40" y="40" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Hx5-J9-tdQ"/>
+                                    <constraint firstAttribute="width" secondItem="Cci-xf-dRj" secondAttribute="height" multiplier="1:1" id="sfO-1M-htY"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="returnButton" image="chevron.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="returnTapped:" destination="TPI-MA-pbg" eventType="touchUpInside" id="TIl-3l-DHY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A91-iY-doC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Cci-xf-dRj" firstAttribute="top" secondItem="XfV-mr-BIq" secondAttribute="top" constant="40" id="4LM-15-h3k"/>
                             <constraint firstItem="atY-Hh-haW" firstAttribute="top" secondItem="A91-iY-doC" secondAttribute="top" constant="40" id="KLP-1b-daq"/>
                             <constraint firstItem="A91-iY-doC" firstAttribute="trailing" secondItem="atY-Hh-haW" secondAttribute="trailing" constant="40" id="bJG-la-l2I"/>
                             <constraint firstItem="atY-Hh-haW" firstAttribute="leading" secondItem="A91-iY-doC" secondAttribute="leading" constant="40" id="vnp-rq-Wh4"/>
+                            <constraint firstItem="Cci-xf-dRj" firstAttribute="leading" secondItem="XfV-mr-BIq" secondAttribute="leading" constant="40" id="w4u-F4-LRw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="f3H-Z5-yky"/>
@@ -135,11 +206,12 @@
                         <outlet property="errorLabel" destination="LLI-zT-6OZ" id="vCo-wx-GrU"/>
                         <outlet property="loginButton" destination="5mH-2r-qya" id="wMj-LZ-b6N"/>
                         <outlet property="passwordTextField" destination="zaR-xv-Ayh" id="Y2v-hZ-DP4"/>
+                        <outlet property="returnButton" destination="Cci-xf-dRj" id="sND-DJ-Ahs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ux-ax-64R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="15"/>
+            <point key="canvasLocation" x="1298.5507246376812" y="14.732142857142856"/>
         </scene>
         <!--Sing Up View Controller-->
         <scene sceneID="sj0-t5-izf">
@@ -196,13 +268,30 @@
                                     <constraint firstItem="TXl-nE-ffe" firstAttribute="height" secondItem="JX3-Hs-M0b" secondAttribute="height" id="g0E-6k-OSU"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GN0-vl-qXR">
+                                <rect key="frame" x="40" y="0.0" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="BAx-aO-vdd"/>
+                                    <constraint firstAttribute="width" secondItem="GN0-vl-qXR" secondAttribute="height" multiplier="1:1" id="ldu-7q-cAh"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="returnButton" image="chevron.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="returnTapped:" destination="ju1-Wn-l4t" eventType="touchUpInside" id="NSB-dm-ZeE"/>
+                                    <action selector="returnTapped:" destination="TPI-MA-pbg" eventType="touchUpInside" id="c2e-Rw-0tQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="frw-VY-OeA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="GN0-vl-qXR" firstAttribute="top" secondItem="Jnn-8J-6y2" secondAttribute="top" constant="40" id="0p3-LN-J1b"/>
                             <constraint firstItem="frw-VY-OeA" firstAttribute="trailing" secondItem="MH0-LY-Zfi" secondAttribute="trailing" constant="40" id="O7W-PP-j1W"/>
                             <constraint firstItem="MH0-LY-Zfi" firstAttribute="top" secondItem="frw-VY-OeA" secondAttribute="top" constant="40" id="ZgW-vM-ibO"/>
                             <constraint firstItem="MH0-LY-Zfi" firstAttribute="leading" secondItem="frw-VY-OeA" secondAttribute="leading" constant="40" id="b7f-ol-l45"/>
+                            <constraint firstItem="GN0-vl-qXR" firstAttribute="leading" secondItem="frw-VY-OeA" secondAttribute="leading" constant="40" id="gSr-x4-rI1"/>
+                            <constraint firstItem="MH0-LY-Zfi" firstAttribute="top" secondItem="GN0-vl-qXR" secondAttribute="bottom" constant="40" id="qkz-xW-zgC"/>
+                            <constraint firstItem="GN0-vl-qXR" firstAttribute="width" secondItem="GN0-vl-qXR" secondAttribute="height" multiplier="1:1" id="yqG-tU-d57"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yim-ku-1SS"/>
@@ -212,6 +301,7 @@
                         <outlet property="firstNameTextField" destination="JX3-Hs-M0b" id="6kU-fe-uz4"/>
                         <outlet property="lastNameTexeField" destination="6uf-s9-FCI" id="kYg-eu-fOS"/>
                         <outlet property="passwordTextField" destination="TXl-nE-ffe" id="acu-mC-zll"/>
+                        <outlet property="returnButton" destination="GN0-vl-qXR" id="vo4-AA-KeH"/>
                         <outlet property="singUpButton" destination="dAE-CJ-DZs" id="4lo-qh-l5p"/>
                     </connections>
                 </viewController>
@@ -449,6 +539,7 @@
     </scenes>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>

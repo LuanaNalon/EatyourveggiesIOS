@@ -24,6 +24,9 @@ class SingUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var returnButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -120,5 +123,18 @@ class SingUpViewController: UIViewController {
                    
                     }
                 }
+    }
+    func transitionToHome() {
+        
+       let viewController =
+        storyboard?.instantiateViewController(identifier:
+        Constants.Storyboard.viewController) as?
+        ViewController
+        
+        view.window?.rootViewController = viewController
+        view.window?.makeKeyAndVisible()
+    }
+    @IBAction func returnTapped(_ sender: Any) {
+        transitionToHome()
     }
 }

@@ -24,7 +24,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
-        getUser()
+        getUser1()
     }
     func showError(_ message:String) {
         errorLabel.text = message
@@ -53,6 +53,19 @@ class EditProfileViewController: UIViewController {
         }
             
     }
+    func getUser1(){
+        let docRef = db.collection("users").document(user!)
+        docRef.getDocument { (document, error) in
+            if error == nil{
+                if document != nil && document!.exists {
+                    let documentdata = document?.data()
+                    
+                }
+            }
+            
+    }
+}
+    
     
     @IBAction func updateTapped(_ sender: Any) {
         let firstName = firstNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
