@@ -9,8 +9,8 @@ import UIKit
 import os.log
 
 class VegetableTableViewController: UITableViewController{
-    
-    @Published var vegetableRepository =  VegetableRepository()
+    let db = Firestore.Firestore()
+
     
     var vegetables = [Vegetable]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -64,7 +64,15 @@ class VegetableTableViewController: UITableViewController{
     }
     
     private func loadMyPurchasedVegetablesFromWeb(){
-        
+       db.collection("users").getDocuments() { (querySnapshot, err) in
+    if let err = err {
+        print("Error getting documents: \(err)")
+    } else {
+        for document in querySnapshot!.documents {
+            print("\(document.documentID) => \(document.data())")
+        }
+    }
+}
     }
     
     private func loadSampleVegetables() {
