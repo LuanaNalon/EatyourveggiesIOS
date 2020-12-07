@@ -7,9 +7,11 @@
 
 import UIKit
 import os.log
+import Firebase
 
 class VegetableTableViewController: UITableViewController{
-    let db = Firestore.Firestore()
+    let db = Firestore.firestore()
+    let user = Auth.auth().currentUser?.uid
 
     
     var vegetables = [Vegetable]()
@@ -60,21 +62,36 @@ class VegetableTableViewController: UITableViewController{
         navigationItem.leftBarButtonItem = editButtonItem
 
         // Load the sample data.
-        loadSampleVegetables()
+   //     loadSampleVegetables()
+        loadMyPurchasedVegetablesFromWeb()
     }
     
     private func loadMyPurchasedVegetablesFromWeb(){
-       db.collection("users").getDocuments() { (querySnapshot, err) in
-    if let err = err {
-        print("Error getting documents: \(err)")
-    } else {
-        for document in querySnapshot!.documents {
-            print("\(document.documentID) => \(document.data())")
+       let user = "6OUXNouLZ84WQVYneeqM"
+        db.collection("users").document(user).getDocument{ (document, error) in
+            if let document = document, document.exists {
+                let myPurchasedVegetables = document.data()!["myPurchasedVegetables"]! as! [Any]
+                print(myPurchasedVegetables)
+                self.db.collection("vegetable").whereField("batchID", in: myPurchasedVegetables)
+                    .getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            print("nao deu erro)")
+                            for document in querySnapshot!.documents {
+                                print("entrou aqui")
+                                print("\(document.documentID) => \(document.data())")
+                            }
+                        }
+                }
+            } else {
+                print("Document does not exist")
+            }
         }
+        
+
     }
-}
-    }
-    
+ /*
     private func loadSampleVegetables() {
     
         
@@ -97,7 +114,7 @@ class VegetableTableViewController: UITableViewController{
         vegetables += [vegetable1, vegetable2, vegetable3]
         
     }
-
+*/
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -133,7 +150,7 @@ class VegetableTableViewController: UITableViewController{
         
         
         cell.nameLabel.text = vegetable.name
-        cell.photoImageView.image = vegetable.photo
+     //   cell.photoImageView.image = vegetable.photo
         
         return cell
     }
