@@ -11,30 +11,41 @@ import Firebase
 import FirebaseFirestore
 
 class LogoutViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        logout()
-        
-    }
     
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var labelError: UILabel!
+    override func viewDidLoad() {
+        labelError.alpha = 0
+        Utilities.styleCancelButton(logoutButton)
+        
+        super.viewDidLoad()
+    }
+    func showError(_ message:String) {
+        labelError.text = message
+        labelError.alpha = 1
+    }
     func logout(){
         do {
-          try Auth.auth().signOut()
-            transitionToHome()
+            try Auth.auth().signOut()
         } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
+            print ("Error signing out: %@", signOutError)
+            showError("Error: Could not log out")
         }
     }
     func transitionToHome() {
         
-       let viewController =
-        storyboard?.instantiateViewController(identifier:
-        Constants.Storyboard.viewController) as?
-        ViewController
+        let viewController =
+            storyboard?.instantiateViewController(identifier:
+                                                    Constants.Storyboard.viewController) as?
+            ViewController
         
         view.window?.rootViewController = viewController
         view.window?.makeKeyAndVisible()
     }
-
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        logout()
+        transitionToHome()
+    }
+    
 }
