@@ -14,6 +14,6 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
-pod 'Firabase/Storage'
+pod 'Firebase/Storage'
 pod 'FirebaseFirestoreSwift'
 end
