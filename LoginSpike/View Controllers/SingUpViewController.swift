@@ -120,7 +120,10 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
                             //show error message
                             self.showError("Error saving user data.")
                         }
+                        
                     }
+                    let alert = UIAlertController(title: "Registration done successfully!", message: nil, preferredStyle: .alert)
+                    self.present(alert, animated: true)
                     //transition to login form
                     self.transitionToLogin()
                 }

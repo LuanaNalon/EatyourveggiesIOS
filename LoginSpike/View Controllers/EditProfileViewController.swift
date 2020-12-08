@@ -11,8 +11,8 @@ import Firebase
 import FirebaseFirestore
 
 class EditProfileViewController: UIViewController, UITextFieldDelegate,
-     UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  
+                                 UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
     
@@ -29,14 +29,20 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
         setUpElements()
         getUser()
     }
+    func validateFields() -> String?{
+        //check that allfields are filled in
+        if lastNameTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            firstNameTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+        {
+            return "Please fill in all fields."
+        }
+        return nil
+    }
     func showError(_ message:String) {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
-    func showsucess(_ message:String) {
-        sucessLabel.text = message
-        sucessLabel.alpha = 1
-    }
+    
     func setUpElements(){
         //hide the error label
         errorLabel.alpha = 0
@@ -53,19 +59,30 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
             if let document = document, document.exists {
                 self.firstNameTextfield.text = document.get("firstName") as? String
                 self.lastNameTextfield.text =  document.get("lastName") as? String
-                } else {
-                    self.showError("Unable to get user data")
-                }
+            } else {
+                self.showError("Unable to get user data")
+            }
         }
-            
+        
     }
     
     @IBAction func updateTapped(_ sender: Any) {
-        let firstName = firstNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lastName = lastNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        db.collection("users").document(user!).setData(["firstName" : firstName, "lastName": lastName])
-        showsucess("User updated successfully!")
-            }
+        //Validate the fields
+        let error = validateFields()
+        if error != nil{
+            
+            //there's something wrong with the fields, show error message
+            showError(error!)
+        }
+        else {
+            let firstName = firstNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let lastName = lastNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            db.collection("users").document(user!).setData(["firstName" : firstName, "lastName": lastName])
+            let alert = UIAlertController(title: "User updated successfully!", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in}))
+            self.present(alert, animated: true)
+        }
+    }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         dismiss(animated: true, completion: nil)
@@ -96,4 +113,5 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
         present(imagePickerController, animated: true, completion: nil)
         
     }
+    
 }
