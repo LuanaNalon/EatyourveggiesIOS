@@ -26,7 +26,7 @@ class VegetableViewController: UIViewController, UITextFieldDelegate, UIImagePic
         if let vegetable = vegetable {
             navigationItem.title = vegetable.name
             nameTextField.text = vegetable.name
-       //     photoImageView.image = vegetable.photo
+            photoImageView.image = vegetable.photo
           
         }
         
@@ -92,7 +92,7 @@ class VegetableViewController: UIViewController, UITextFieldDelegate, UIImagePic
         
         // Set the vegetable to be passed to VegetableTableViewController after the unwind segue.
       //  vegetable = Vegetable(batchID: batchID, name: name, photo: photo)
-        vegetable = Vegetable(batchID: batchID, name: name)
+        vegetable = Vegetable(batchID: batchID, name: name, photo: photo)
         
     }
     
