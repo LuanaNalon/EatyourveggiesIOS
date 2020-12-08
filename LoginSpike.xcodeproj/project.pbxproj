@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		046DA1B4257D4E940091D21D /* VegetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DA1B3257D4E940091D21D /* VegetableViewController.swift */; };
 		047A2D62257C4BEA003755EB /* VegetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D61257C4BEA003755EB /* VegetableTableViewController.swift */; };
 		047A2D7A257C4E44003755EB /* Vegetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D79257C4E44003755EB /* Vegetable.swift */; };
 		047A2D7F257C5CEA003755EB /* VegetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */; };
 		D5B84AF246D163E5E5F55803 /* Pods_LoginSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */; };
 		E21D13AC257BFE0E00FFD21C /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */; };
-		E244554E257D92C400B42DDC /* ProducDetaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244554D257D92C400B42DDC /* ProducDetaisViewController.swift */; };
+		E244554E257D92C400B42DDC /* VegetableDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */; };
 		E24B1D302571C15D00D3A8D3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */; };
 		E24B1D352571CABE00D3A8D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E24B1D342571CABD00D3A8D3 /* GoogleService-Info.plist */; };
 		E2A5AA0A25719BFE00A7A406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA0925719BFE00A7A406 /* AppDelegate.swift */; };
@@ -31,14 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		046DA1B3257D4E940091D21D /* VegetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableViewController.swift; sourceTree = "<group>"; };
 		047A2D61257C4BEA003755EB /* VegetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableTableViewController.swift; sourceTree = "<group>"; };
 		047A2D79257C4E44003755EB /* Vegetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vegetable.swift; sourceTree = "<group>"; };
 		047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VegetableTableViewCell.swift; path = "LoginSpike/View Controllers/VegetableTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28EFD0DB7EA4BD0880DAEEB /* Pods-LoginSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.release.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.release.xcconfig"; sourceTree = "<group>"; };
 		E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
-		E244554D257D92C400B42DDC /* ProducDetaisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducDetaisViewController.swift; sourceTree = "<group>"; };
+		E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableDetailsViewController.swift; sourceTree = "<group>"; };
 		E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E24B1D342571CABD00D3A8D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2A5AA0625719BFE00A7A406 /* LoginSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,8 +140,7 @@
 				E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */,
 				047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */,
 				047A2D61257C4BEA003755EB /* VegetableTableViewController.swift */,
-				046DA1B3257D4E940091D21D /* VegetableViewController.swift */,
-				E244554D257D92C400B42DDC /* ProducDetaisViewController.swift */,
+				E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -282,7 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047A2D7F257C5CEA003755EB /* VegetableTableViewCell.swift in Sources */,
-				E244554E257D92C400B42DDC /* ProducDetaisViewController.swift in Sources */,
+				E244554E257D92C400B42DDC /* VegetableDetailsViewController.swift in Sources */,
 				E2B8D17F257BE6AD00248030 /* MenuViewController.swift in Sources */,
 				047A2D7A257C4E44003755EB /* Vegetable.swift in Sources */,
 				E2A5AA1F25719CAD00A7A406 /* LoginViewController.swift in Sources */,
@@ -292,7 +289,6 @@
 				E2A5AA0E25719BFE00A7A406 /* ViewController.swift in Sources */,
 				E2A9BD952576CB380017C4DE /* Constants.swift in Sources */,
 				047A2D62257C4BEA003755EB /* VegetableTableViewController.swift in Sources */,
-				046DA1B4257D4E940091D21D /* VegetableViewController.swift in Sources */,
 				E2A5AA0A25719BFE00A7A406 /* AppDelegate.swift in Sources */,
 				E2A5AA0C25719BFE00A7A406 /* SceneDelegate.swift in Sources */,
 				E2B8D175257BE24100248030 /* EditProfileViewController.swift in Sources */,

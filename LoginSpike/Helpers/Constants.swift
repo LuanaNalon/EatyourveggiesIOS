@@ -14,6 +14,7 @@ struct Constants {
         static let viewController = "HomeVC"
         static let loginViewController = "LoginVC"
         static let menuViewcontroller = "MenuVC"
+        static let vegetableViewController = "VegetableVC"
     }
     
     
