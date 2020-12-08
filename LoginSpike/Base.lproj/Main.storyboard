@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="arE-7o-GbO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7lP-58-n37">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eat Your Veggies" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axy-as-egv">
-                                <rect key="frame" x="40" y="344" width="334" height="297.5"/>
+                                <rect key="frame" x="40" y="300" width="334" height="297.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="83"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="atY-Hh-haW">
-                                <rect key="frame" x="40" y="84" width="334" height="271"/>
+                                <rect key="frame" x="40" y="40" width="334" height="271"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4d-QA-xje" userLabel="Login">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
@@ -185,7 +185,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-xf-dRj">
-                                <rect key="frame" x="40" y="10" width="44" height="44"/>
+                                <rect key="frame" x="40" y="-34" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Hx5-J9-tdQ"/>
                                     <constraint firstAttribute="width" secondItem="Cci-xf-dRj" secondAttribute="height" multiplier="1:1" id="sfO-1M-htY"/>
@@ -208,6 +208,7 @@
                             <constraint firstItem="atY-Hh-haW" firstAttribute="top" secondItem="Cci-xf-dRj" secondAttribute="bottom" constant="30" id="voy-IK-yej"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9Ve-KY-0MF"/>
                     <connections>
                         <outlet property="emailTextField" destination="EZ2-fb-6F2" id="s9x-jd-0Ja"/>
                         <outlet property="errorLabel" destination="LLI-zT-6OZ" id="vCo-wx-GrU"/>
@@ -419,7 +420,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MH0-LY-Zfi">
-                                <rect key="frame" x="40" y="84" width="334" height="561"/>
+                                <rect key="frame" x="40" y="40" width="334" height="561"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sing Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-Q8-6QE">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
@@ -489,7 +490,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GN0-vl-qXR">
-                                <rect key="frame" x="40" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="40" y="-44" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="BAx-aO-vdd"/>
                                     <constraint firstAttribute="width" secondItem="GN0-vl-qXR" secondAttribute="height" multiplier="1:1" id="ldu-7q-cAh"/>
@@ -739,11 +740,11 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
+                        <segue destination="fs4-Th-adf" kind="relationship" relationship="viewControllers" id="osm-Dg-EyO"/>
                         <segue destination="ecs-b0-QBu" kind="relationship" relationship="viewControllers" id="VGN-lq-2iZ"/>
                         <segue destination="e2s-lu-FHB" kind="relationship" relationship="viewControllers" id="Fg9-kB-iSI"/>
                         <segue destination="Rln-Xi-v9F" kind="relationship" relationship="viewControllers" id="Fw1-tN-ysz"/>
                         <segue destination="V49-Lf-hfD" kind="relationship" relationship="viewControllers" id="Fbp-eA-CQM"/>
-                        <segue destination="fs4-Th-adf" kind="relationship" relationship="viewControllers" id="osm-Dg-EyO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usr-Kv-vqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -813,9 +814,9 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
-        <image name="defaultImage" width="540" height="540"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="defaultImage" width="540" height="540"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>

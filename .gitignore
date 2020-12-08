@@ -36,6 +36,8 @@ Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
 
 # Cocoapods
-Pods/
+LoginSpike/Pods/*
+Pods/*
 
-LoginSpike/Main.storyboard
+Pods/Pods.xcodeproj/project.pbxproj 
+
