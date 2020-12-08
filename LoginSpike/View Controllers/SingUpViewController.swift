@@ -86,6 +86,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
     }
     
     @IBAction func singUpTapped(_ sender: Any) {
+        
         //Validate the fields
         let error = validateFields()
         
@@ -160,6 +161,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
         // Set photoImageView to display the selected image.
         
         photoImageView.image = selectedImage
+    
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
