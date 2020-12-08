@@ -725,7 +725,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-YE-4aY">
-                                <rect key="frame" x="40" y="104" width="334" height="250"/>
+                                <rect key="frame" x="40" y="104" width="334" height="270.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to exit the application?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMR-h8-0q8">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="200"/>
@@ -746,6 +746,12 @@
                                             <action selector="logoutTapped:" destination="V49-Lf-hfD" eventType="touchUpInside" id="zbW-md-TWL"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3K-ID-Oag" userLabel="Label Error">
+                                        <rect key="frame" x="0.0" y="250" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -759,6 +765,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Logout" image="power" catalog="system" id="CIW-c1-tfS"/>
                     <connections>
+                        <outlet property="labelError" destination="x3K-ID-Oag" id="lTY-r6-JTg"/>
                         <outlet property="logoutButton" destination="10j-2C-bVa" id="Whb-tF-RRc"/>
                     </connections>
                 </viewController>

@@ -8,7 +8,7 @@
 import UIKit
 
 class ProducDetaisViewController: UIViewController {
-
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var originField: UITextField!
     @IBOutlet weak var cultivationField: UITextField!
@@ -31,7 +31,7 @@ class ProducDetaisViewController: UIViewController {
     }
     func setUpElements(){
         
-//style the elements
+        //style the elements
         Utilities.styleTextField(nameField)
         Utilities.styleTextField(originField)
         Utilities.styleTextField(cultivationField)
@@ -44,9 +44,9 @@ class ProducDetaisViewController: UIViewController {
         Utilities.styleTextField(co2Field)
         Utilities.styleTextField(tiltField)
         Utilities.styleTextField(shockField)
-       
+        
     }
-
+    
     @IBAction func returnTapped(_ sender: Any) {
     }
 }

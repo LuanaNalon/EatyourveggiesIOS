@@ -2,7 +2,7 @@
 //  EditProfileViewController.swift
 //  LoginSpike
 //
-//  Created by Tânia Maria Martins Roda on 04/12/2020.
+//  Created by Luana Nalon on 05/12/2020.
 //
 
 import UIKit
@@ -46,8 +46,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
     func setUpElements(){
         //hide the error label
         errorLabel.alpha = 0
-        sucessLabel.alpha = 0
-        
+    
         //style the elements
         Utilities.styleTextField(firstNameTextfield)
         Utilities.styleTextField(lastNameTextfield)

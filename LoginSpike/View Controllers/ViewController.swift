@@ -12,31 +12,30 @@ class ViewController: UIViewController {
     
     var videoPlayer:AVPlayer?
     var videoPlayerLayer:AVPlayerLayer?
-
+    
     @IBOutlet weak var singUpButton: UIButton!
     
     @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         setUpElements()
     }
     override func viewWillAppear(_ animated: Bool) {
-//    set up video on the background
+        //    set up video on the background
         setUpVideo()
     }
     func setUpElements(){
         if(singUpButton != nil) {
-        Utilities.styleFilledButton(singUpButton)
+            Utilities.styleFilledButton(singUpButton)
         }
         if(loginButton != nil) {
-        Utilities.styleFilledButton(loginButton)
+            Utilities.styleFilledButton(loginButton)
         }
     }
     func setUpVideo(){
-//        get the path to the resource in the bundle
+        //        get the path to the resource in the bundle
         let bundlePath = Bundle.main.path(forResource: "veggies", ofType: "mp4")
         guard bundlePath != nil else {
             return
@@ -61,6 +60,6 @@ class ViewController: UIViewController {
         // Add it to the view and play it
         videoPlayer?.playImmediately(atRate: 0.3)
     }
- 
+    
 }
 
