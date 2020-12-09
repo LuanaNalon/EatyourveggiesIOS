@@ -54,10 +54,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
     }
     func getUser(){
         let docRef = db.collection("users").document(user!)
+        print("docRef", docRef)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                self.firstNameTextfield.text = document.get("firstName") as? String
-                self.lastNameTextfield.text =  document.get("lastName") as? String
+                self.firstNameTextfield.text = document.get("firstname") as? String
+                self.lastNameTextfield.text =  document.get("lastname") as? String
             } else {
                 self.showError("Unable to get user data")
             }
@@ -76,7 +77,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
         else {
             let firstName = firstNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            db.collection("users").document(user!).setData(["firstName" : firstName, "lastName": lastName])
+            db.collection("users").document(user!).setData(["firstname" : firstName, "lastname": lastName])
             let alert = UIAlertController(title: "User updated successfully!", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in}))
             self.present(alert, animated: true)
