@@ -78,15 +78,39 @@ class VegetableTableViewController: UITableViewController{
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
-                            print("nao deu erro)")
+                            print("nao deu erro")
                             for document in querySnapshot!.documents {
                                 let photo1 = UIImage(named: "vegetable1")
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
+                                let origin = document.get("origin") as! String
+                                let cultivation = document.get("cultivation") as! String
+                                let weight = document.get("weight") as! String
+                                let hDate = document.get("hDate") as! String
+                                let eDate = document.get("eDate") as! String
+                                let localization = document.get("localization") as! String
+                                let temperature = document.get("temperature") as! String
+                                let humidity = document.get("humidity") as! String
+                                let co2 = document.get("co2") as! String
+                                let tilt = document.get("tilt") as! String
+                                let shock = document.get("shock") as! String
                                 print("name: " , name)
                                 print("batchID: " , batchID)
                                 
-                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1) else {
+                                guard let vegetable = Vegetable(batchID: batchID,
+                                                                name: name,
+                                                                photo: photo1,
+                                                                origin: origin,
+                                                                cultivation: cultivation,
+                                                                weight: weight,
+                                                                hDate: hDate,
+                                                                eDate: eDate,
+                                                                localization: localization,
+                                                                temperature: temperature,
+                                                                humidity: humidity,
+                                                                co2: co2,
+                                                                tilt: tilt,
+                                                                shock: shock) else {
                                     fatalError("Unable to instantiate vegetable")
                                 }
                                 print(vegetable.name)
@@ -110,14 +134,27 @@ class VegetableTableViewController: UITableViewController{
         
         let photo1 = UIImage(named: "vegetable1")
         
-        let photo2 = UIImage(named: "vegetable2")
-        let photo3 = UIImage(named: "vegetable3")
+        //let photo2 = UIImage(named: "vegetable2")
+        //let photo3 = UIImage(named: "vegetable3")
         
-        guard let vegetable1 = Vegetable(batchID:"3213123", name: "Caprese Salad", photo: photo1) else {
+        guard let vegetable1 = Vegetable(batchID:"3213123",
+                                         name: "Caprese Salad",
+                                         photo: photo1,
+                                         origin: "Brasil",
+                                         cultivation: "Bio",
+                                         weight: "500",
+                                         hDate: "10/12/2020",
+                                         eDate: "15/12/2020",
+                                         localization: "Leiria",
+                                         temperature: "11",
+                                         humidity: "12",
+                                         co2: "4",
+                                         tilt: "3",
+                                         shock: "4") else {
             fatalError("Unable to instantiate vegetable1")
         }
         
-        guard let vegetable2 = Vegetable(batchID:"32131df23", name: "Chicken and Potatoes", photo: photo2) else {
+/*      guard let vegetable2 = Vegetable(batchID:"32131df23", name: "Chicken and Potatoes", photo: photo2) else {
             fatalError("Unable to instantiate vegetable2")
         }
         
@@ -128,9 +165,9 @@ class VegetableTableViewController: UITableViewController{
             fatalError("Unable to instantiate vegetable2")
         }
         
-        
+ */
         vegetables += loadMyPurchasedVegetablesFromWeb()
-        vegetables += [vegetable1, vegetable2, vegetable3, vegetable4]
+        vegetables += [vegetable1]
         
     }
     
@@ -221,8 +258,8 @@ class VegetableTableViewController: UITableViewController{
         switch(segue.identifier ?? "") {
         case "AddItem":
             os_log("Adding a new vegetable.", log: OSLog.default, type: .debug)
-        case "ShowDetail":
-            guard let vegetableDetailViewController = segue.destination as? VegetableViewController else {
+        case "showDetails":
+            guard let vegetableDetailViewController = segue.destination as? VegetableDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedVegetableCell = sender as? VegetableTableViewCell else {
@@ -238,15 +275,10 @@ class VegetableTableViewController: UITableViewController{
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
-    
-    
-    
-    
-    
-    
+
     @IBAction func unwindToVegetableList(sender: UIStoryboardSegue) {
         
-        if let sourceViewController = sender.source as? VegetableViewController,
+        if let sourceViewController = sender.source as? VegetableDetailsViewController,
            let vegetable = sourceViewController.vegetable {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing vegetable.
