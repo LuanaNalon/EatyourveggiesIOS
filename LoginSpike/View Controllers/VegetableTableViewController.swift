@@ -1,9 +1,3 @@
-//
-//  VegetableTableViewController.swift
-//  FoodTrackerPL1
-//
-//  Created by Jose Ribeiro on 10/11/2020.
-//
 
 import UIKit
 import os.log

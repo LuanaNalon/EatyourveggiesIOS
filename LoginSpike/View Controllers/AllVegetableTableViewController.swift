@@ -1,9 +1,3 @@
-//
-//  VegetableTableViewController.swift
-//  FoodTrackerPL1
-//
-//  Created by Jose Ribeiro on 10/11/2020.
-//
 
 import UIKit
 import os.log
@@ -21,15 +15,9 @@ class AllVegetableTableViewController: UITableViewController{
     
     var filteredVegetables: [Vegetable] = []
     
-    
-    
-    
-    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
-    
     
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
@@ -60,7 +48,6 @@ class AllVegetableTableViewController: UITableViewController{
         loadAllVegetablesFromWeb()
         
       
-        
     }
     
     private func storeDataDummy(){
@@ -119,10 +106,29 @@ class AllVegetableTableViewController: UITableViewController{
                                 let photo1 = UIImage(named: "vegetable1")
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
-                                print("name: " , name)
-                                print("batchID: " , batchID)
+                                let origin = document.get("origin") as! String
+                                let cultivation = document.get("cultivation") as! String
+                                let weight = document.get("weight") as! String
+                                let hDate = document.get("hDate") as! String
+                                let eDate = document.get("eDate") as! String
+                                let localization = document.get("localization") as! String
+                                let temperature = document.get("temperature") as! String
+                                let humidity = document.get("humidity") as! String
+                                let co2 = document.get("co2") as! String
+                                let tilt = document.get("tilt") as! String
+                                let shock = document.get("shock") as! String
                                 
-                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1) else {
+                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1, origin: origin,
+                                    cultivation: cultivation,
+                                    weight: weight,
+                                    hDate: hDate,
+                                    eDate: eDate,
+                                    localization: localization,
+                                    temperature: temperature,
+                                    humidity: humidity,
+                                    co2: co2,
+                                    tilt: tilt,
+                                    shock: shock) else {
                                     fatalError("Unable to instantiate vegetable")
                                 }
                                 self.vegetables += [vegetable]
@@ -140,6 +146,7 @@ class AllVegetableTableViewController: UITableViewController{
             }
         }
     }
+    /*
     private func loadSampleVegetables() {
         
         
@@ -167,6 +174,7 @@ class AllVegetableTableViewController: UITableViewController{
         vegetables += [vegetable1, vegetable2, vegetable3, vegetable4]
         
     }
+ */
     
     // MARK: - Table view data source
     
@@ -274,7 +282,7 @@ class AllVegetableTableViewController: UITableViewController{
         case "AddItem":
             os_log("Adding a new vegetable.", log: OSLog.default, type: .debug)
         case "ShowDetail":
-            guard let vegetableDetailViewController = segue.destination as? VegetableViewController else {
+            guard let vegetableDetailsViewController = segue.destination as? VegetableDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedVegetableCell = sender as? FavoriteVegetableTableViewCell else {
@@ -285,7 +293,7 @@ class AllVegetableTableViewController: UITableViewController{
             }
             
             let selectedVegetable = vegetables[indexPath.row]
-            vegetableDetailViewController.vegetable = selectedVegetable
+            vegetableDetailsViewController.vegetable = selectedVegetable
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
@@ -298,7 +306,7 @@ class AllVegetableTableViewController: UITableViewController{
     
     @IBAction func unwindToVegetableList(sender: UIStoryboardSegue) {
         
-        if let sourceViewController = sender.source as? VegetableViewController,
+        if let sourceViewController = sender.source as? VegetableDetailsViewController,
            let vegetable = sourceViewController.vegetable {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing vegetable.
