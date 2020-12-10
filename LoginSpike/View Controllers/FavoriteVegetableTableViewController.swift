@@ -9,7 +9,7 @@ import UIKit
 import os.log
 import Firebase
 
-class VegetableTableViewController: UITableViewController{
+class FavoriteVegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
     
@@ -56,26 +56,61 @@ class VegetableTableViewController: UITableViewController{
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
-
-        loadMyPurchasedVegetablesFromWeb()
- 
+       // storeDataDummy()
+        loadMyFavoriteVegetablesFromWeb()
+        
+       // loadSampleVegetables()
+        
     }
     
-  
-    private func loadMyPurchasedVegetablesFromWeb() {
+    private func storeDataDummy(){
+        func randomString(length: Int) -> String {
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            return String((0..<length).map{ _ in letters.randomElement()! })
+        }
+        let array = ["Alface", "Tomate", "Pepino", "Couve","Courgete","Cenoura","Beterraba","Couve-Coracao-Boi","Batata","Batata Doce","Broculos"]
         
-        var myPurchasedVegetables = [String]()
+        for item in 1...250 {
+            db.collection("vegetables").addDocument(data:[
+                "batchID": randomString(length: 8),
+                "co2": String(Int.random(in: 0...100)),
+                "cultivation":                "Tradicional",
+                "eDate":                "13/12/2020",
+                "hDate":                "12/11/2020",
+                "humidity":                String(Int.random(in: 0...100)),
+                "localization":           "Coimbra",
+                "name":   array.randomElement()!,
+                "origin":                "Holanda",
+                "shock": String(Int.random(in: 0...10)),
+                "temperature": String(Int.random(in: 0...50)),
+                "tilt": String(Int.random(in: 0...10)),
+                "weight":String(Int.random(in: 0...100000))
+                
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+        
+    }
+    
+    private func loadMyFavoriteVegetablesFromWeb() {
+        
+        var myFavoriteVegetables = [String]()
         let user = "6OUXNouLZ84WQVYneeqM"
         print(1)
         self.db.collection("users").document(user).getDocument{ (document, error) in
             if let document = document, document.exists {
-                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]! as! [String]
-                print("dentro do doc: ",myPurchasedVegetables  )
+                myFavoriteVegetables = document.data()!["myFavoriteVegetables"]! as! [String]
+                print("dentro do doc: ",myFavoriteVegetables  )
                 print(2)
                 
                 
-                print("fora: ", myPurchasedVegetables)
-                self.db.collection("vegetables").whereField("batchID", in: myPurchasedVegetables)
+                print("fora: ", myFavoriteVegetables)
+                self.db.collection("vegetables").whereField("batchID", in: myFavoriteVegetables)
                     .getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
@@ -109,6 +144,33 @@ class VegetableTableViewController: UITableViewController{
         
     }
     
+    private func loadSampleVegetables() {
+        
+        
+        let photo1 = UIImage(named: "vegetable1")
+        
+        let photo2 = UIImage(named: "vegetable2")
+        let photo3 = UIImage(named: "vegetable3")
+        
+        guard let vegetable1 = Vegetable(batchID:"3213123", name: "Caprese Salad", photo: photo1) else {
+            fatalError("Unable to instantiate vegetable1")
+        }
+        
+        guard let vegetable2 = Vegetable(batchID:"32131df23", name: "Chicken and Potatoes", photo: photo2) else {
+            fatalError("Unable to instantiate vegetable2")
+        }
+        
+        guard let vegetable3 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
+            fatalError("Unable to instantiate vegetable2")
+        }
+        guard let vegetable4 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
+            fatalError("Unable to instantiate vegetable2")
+        }
+        
+        
+        vegetables += [vegetable1, vegetable2, vegetable3, vegetable4]
+        
+    }
     
     // MARK: - Table view data source
     
@@ -249,7 +311,7 @@ class VegetableTableViewController: UITableViewController{
     
     
 }
-extension VegetableTableViewController: UISearchResultsUpdating {
+extension FavoriteVegetableTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let category = "vategory"
@@ -257,7 +319,7 @@ extension VegetableTableViewController: UISearchResultsUpdating {
     }
 }
 
-extension VegetableTableViewController: UISearchBarDelegate {
+extension FavoriteVegetableTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         let category = "vategory"
         filterContentForSearchText(searchBar.text!, category: category)

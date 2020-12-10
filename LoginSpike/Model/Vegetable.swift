@@ -59,29 +59,3 @@ class Vegetable: NSObject, NSCoding {
     }
     
 }
-/*struct Vegetable:  Codable {
- 
- //MARK: Properties
- var batchID: String
- var name :String
- //  var size :String
- var photo: UIImage?
- // var category: String
- static func listItemsFromJSONData(jsonData: NSData?) -> [Vegetable] {
- guard let nonNilJsonData = jsonData,
- let json = try? JSONSerialization.jsonObject(with: nonNilJsonData as Data, options: []),
- let jsonItems = json as? Array<NSDictionary> else { return [] }
- 
- return jsonItems.compactMap { (itemDesc: NSDictionary) -> Vegetable? in
- guard let title = itemDesc["batchID"] as? String,
- let urlString = itemDesc["name"] as? String,
- let url = NSURL(string: urlString)
- else { return nil }
- let iconName = itemDesc["photo"] as? String
- let photo = UIImage(named: iconName ?? "")
- return Vegetable( batchID: batchID, name: name, photo: photo)
- }
- }
- 
- }
- */
