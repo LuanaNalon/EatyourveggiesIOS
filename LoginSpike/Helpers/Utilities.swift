@@ -29,7 +29,7 @@ class Utilities {
         textfield.layer.addSublayer(bottomLine)
         
     }
-    
+   
     static func styleFilledButton(_ button:UIButton) {
         
         // Filled rounded corner style

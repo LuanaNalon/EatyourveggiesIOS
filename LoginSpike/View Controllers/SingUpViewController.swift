@@ -9,9 +9,12 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 
 class SingUpViewController: UIViewController,UITextFieldDelegate,
                             UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    let storage = Storage.storage().reference()
     
     @IBOutlet weak var firstNameTextField: UITextField!
     
@@ -113,7 +116,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
                     // User was created successfully, now store the first name and last name
                     let db = Firestore.firestore()
                     
-                    db.collection("users").addDocument(data: ["firstname":firstName,
+                    db.collection("users").document(result!.user.uid).setData( ["firstname":firstName,
                                                               "lastname":lastName, "uid": result!.user.uid]) { (error) in
                         
                         if error != nil {
@@ -152,19 +155,27 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey :
                                 Any]) {
+        // Dismiss the picker.
+        picker.dismiss(animated: true, completion: nil)
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage =
-                info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+                info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        // Set photoImageView to display the selected image.
-        
+        guard let imageData = selectedImage.pngData() else {
+            return
+        }
         photoImageView.image = selectedImage
+        //upload image data
+        let number = arc4random()
+        storage.child("profilePhotos/"+String(number)+".png").putData(imageData, metadata: nil) { (_, error) in
+            guard error == nil else {
+                self.showError("Failed to upload")
+                return
+            }
+        }
         
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func changePhotoTapped(_ sender: Any) {
         
@@ -174,8 +185,8 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
         imagePickerController.sourceType = .photoLibrary
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
-        
         
     }
     
