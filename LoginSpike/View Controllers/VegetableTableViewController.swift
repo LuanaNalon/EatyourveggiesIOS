@@ -6,17 +6,13 @@ import Firebase
 class VegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
-    
-    
+        
     var vegetables = [Vegetable]()
     
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredVegetables: [Vegetable] = []
-    
-    
-    
     
     
     var isSearchBarEmpty: Bool {
@@ -27,6 +23,11 @@ class VegetableTableViewController: UITableViewController{
     
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     
@@ -57,27 +58,25 @@ class VegetableTableViewController: UITableViewController{
     
   
     private func loadMyPurchasedVegetablesFromWeb() {
+        var photo1 = UIImage(named: "vegetable1")
         
         var myPurchasedVegetables = [String]()
-        let user = "6OUXNouLZ84WQVYneeqM"
+      
         print(1)
-        self.db.collection("users").document(user).getDocument{ (document, error) in
+        self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
-                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]! as! [String]
-                print("dentro do doc: ",myPurchasedVegetables  )
-                print(2)
-                
-                
-                print("fora: ", myPurchasedVegetables)
-                self.db.collection("vegetables").whereField("batchID", in: myPurchasedVegetables)
-                    .getDocuments() { (querySnapshot, err)   in
+                if document.data()?["myPurchasedVegetables"]  == nil{
+                    myPurchasedVegetables = [""]
+                }
+                else{
+                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]!  as! [String]
+                self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
                             for document in querySnapshot!.documents {
                                 //
                                 //
-                                let photo1 = UIImage(named: "vegetable1")
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -91,6 +90,17 @@ class VegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
+                                // Create a reference from a Google Cloud Storage URI
+                                let storage = Storage.storage().reference(forURL: "gs://loginspike-47cbc.appspot.com/productPhotos/"+String(name)+".png")
+                                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                                storage.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                  if error != nil {
+                                    photo1 = UIImage(named: "vegetable1")
+                                  } else {
+                                    let image = UIImage(data: data!)
+                                    photo1 = image
+                                  }
+                                }
                                 print("name: " , name)
                                 print("batchID: " , batchID)
                                 
@@ -116,9 +126,13 @@ class VegetableTableViewController: UITableViewController{
                                 
                                 
                             }
+                            
+                            self.vegetables = self.vegetables.filter { myPurchasedVegetables.contains($0.batchID) }
                             self.tableView.reloadData()
+
                         }
                     }
+                }
                 
             } else {
                 print("Document does not exist")
@@ -126,7 +140,6 @@ class VegetableTableViewController: UITableViewController{
         }
         
     }
-    
     
     // MARK: - Table view data source
     
@@ -176,7 +189,7 @@ class VegetableTableViewController: UITableViewController{
      }
      */
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+/*    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             vegetables.remove(at: indexPath.row)
@@ -187,7 +200,7 @@ class VegetableTableViewController: UITableViewController{
         }
     }
     
-    
+    */
     /*
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
