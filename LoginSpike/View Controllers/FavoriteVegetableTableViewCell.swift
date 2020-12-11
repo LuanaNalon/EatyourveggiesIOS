@@ -28,6 +28,7 @@ class FavoriteVegetableTableViewCell: UITableViewCell {
     @IBAction func favButtonTapped(_ sender: UIButton){
        // if the closure is defined (not nil)
        // then execute the code inside the subscribeButtonAction closure
+        favButton.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
        favButtonAction?()
      }
 }
