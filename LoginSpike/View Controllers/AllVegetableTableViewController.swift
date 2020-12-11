@@ -53,46 +53,10 @@ class AllVegetableTableViewController: UITableViewController{
         
       
     }
-    
-    private func storeDataDummy(){
-        func randomString(length: Int) -> String {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            return String((0..<length).map{ _ in letters.randomElement()! })
-        }
-        let array = ["Alface", "Tomate", "Pepino", "Couve","Courgete","Cenoura","Beterraba","Couve-Coracao-Boi","Batata","Batata Doce","Broculos"]
-        
-        for item in 1...250 {
-            db.collection("vegetables").addDocument(data:[
-                "batchID": randomString(length: 8),
-                "co2": String(Int.random(in: 0...100)),
-                "cultivation":                "Tradicional",
-                "eDate":                "13/12/2020",
-                "hDate":                "12/11/2020",
-                "humidity":                String(Int.random(in: 0...100)),
-                "localization":           "Coimbra",
-                "name":   array.randomElement()!,
-                "origin":                "Holanda",
-                "shock": String(Int.random(in: 0...10)),
-                "temperature": String(Int.random(in: 0...50)),
-                "tilt": String(Int.random(in: 0...10)),
-                "weight":String(Int.random(in: 0...100000))
-                
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-        }
-        
-    }
-    
+   
     private func loadAllVegetablesFromWeb() {
-        var photo1 = UIImage(named: "vegetable1")
         var myVegetablesToRemoveFromAll = [String]()
         
-        print(1)
         self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
                 if document.data()?["myFavoriteVegetables"]  == nil   {
@@ -108,14 +72,12 @@ class AllVegetableTableViewController: UITableViewController{
 
                 }
                 
-                
                 self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
                             for document in querySnapshot!.documents {
-                                //
-                                //
+                                
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -129,19 +91,9 @@ class AllVegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
-                                // Create a reference from a Google Cloud Storage URI
-                                let storage = Storage.storage().reference(forURL: "gs://loginspike-47cbc.appspot.com/productPhotos/"+String(name)+".png")
-                                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                                storage.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                                  if error != nil {
-                                    photo1 = UIImage(named: "vegetable1")
-                                  } else {
-                                    let image = UIImage(data: data!)
-                                    photo1 = image
-                                  }
-                                }
+                                let photo = UIImage(named: name)
                                 
-                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1, origin: origin,
+                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo, origin: origin,
                                     cultivation: cultivation,
                                     weight: weight,
                                     hDate: hDate,
@@ -157,10 +109,6 @@ class AllVegetableTableViewController: UITableViewController{
                                 self.vegetables += [vegetable]
                               
                                 self.vegetables = self.vegetables.filter { !myVegetablesToRemoveFromAll.contains($0.batchID) }
-                                
-                                print("Nivel 1: ",self.vegetables.count)
-                                
-                                
                                 
                             }
                             self.tableView.reloadData()
