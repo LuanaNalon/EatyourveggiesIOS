@@ -34,7 +34,7 @@ class FavoriteVegetableTableViewCell: UITableViewCell {
 
     @IBAction func favButtonTapped(_ sender: UIButton){
        // if the closure is defined (not nil)
-       // then execute the code inside the fav closure
+       // then execute the code inside the subscribeButtonAction closure
        favButtonAction?()
 
      }
