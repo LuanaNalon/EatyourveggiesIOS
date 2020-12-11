@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         }
     }
     func setUpVideo(){
-        //        get the path to the resource in the bundle
+        // get the path to the resource in the bundle
         let bundlePath = Bundle.main.path(forResource: "veggies", ofType: "mp4")
         guard bundlePath != nil else {
             return

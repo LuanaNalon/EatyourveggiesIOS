@@ -25,7 +25,7 @@ class AllVegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+              loadAllVegetablesFromWeb()
     }
     
     override func viewDidLoad() {
@@ -47,52 +47,17 @@ class AllVegetableTableViewController: UITableViewController{
         //*************************
         
         // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem
+       // navigationItem.leftBarButtonItem = editButtonItem
        // storeDataDummy()
         loadAllVegetablesFromWeb()
         
       
     }
-    
-    private func storeDataDummy(){
-        func randomString(length: Int) -> String {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            return String((0..<length).map{ _ in letters.randomElement()! })
-        }
-        let array = ["Alface", "Tomate", "Pepino", "Couve","Courgete","Cenoura","Beterraba","Couve-Coracao-Boi","Batata","Batata Doce","Broculos"]
-        
-        for item in 1...250 {
-            db.collection("vegetables").addDocument(data:[
-                "batchID": randomString(length: 8),
-                "co2": String(Int.random(in: 0...100)),
-                "cultivation":                "Tradicional",
-                "eDate":                "13/12/2020",
-                "hDate":                "12/11/2020",
-                "humidity":                String(Int.random(in: 0...100)),
-                "localization":           "Coimbra",
-                "name":   array.randomElement()!,
-                "origin":                "Holanda",
-                "shock": String(Int.random(in: 0...10)),
-                "temperature": String(Int.random(in: 0...50)),
-                "tilt": String(Int.random(in: 0...10)),
-                "weight":String(Int.random(in: 0...100000))
-                
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-        }
-        
-    }
-    
+   
     private func loadAllVegetablesFromWeb() {
-        
+        self.vegetables = []
         var myVegetablesToRemoveFromAll = [String]()
         
-        print(1)
         self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
                 if document.data()?["myFavoriteVegetables"]  == nil   {
@@ -108,15 +73,12 @@ class AllVegetableTableViewController: UITableViewController{
 
                 }
                 
-                
                 self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
                             for document in querySnapshot!.documents {
-                                //
-                                //
-                                let photo1 = UIImage(named: "vegetable1")
+                                
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -130,8 +92,9 @@ class AllVegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
+                                let photo = UIImage(named: name)
                                 
-                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1, origin: origin,
+                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo, origin: origin,
                                     cultivation: cultivation,
                                     weight: weight,
                                     hDate: hDate,
@@ -147,10 +110,6 @@ class AllVegetableTableViewController: UITableViewController{
                                 self.vegetables += [vegetable]
                               
                                 self.vegetables = self.vegetables.filter { !myVegetablesToRemoveFromAll.contains($0.batchID) }
-                                
-                                print("Nivel 1: ",self.vegetables.count)
-                                
-                                
                                 
                             }
                             self.tableView.reloadData()
@@ -216,6 +175,18 @@ class AllVegetableTableViewController: UITableViewController{
             
            }
         
+        cell.buyButtonAction = { [unowned self] in
+             
+            let alert = UIAlertController(title: "Add to my purchesed vegetables!", message: "Added  \(vegetable.name)", preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+             alert.addAction(okAction)
+                   
+             self.present(alert, animated: true, completion: nil)
+            
+            buyVegetable(batchID: vegetable.batchID,position: indexPath.row)
+            
+           }
+        
         
         return cell
     }
@@ -226,14 +197,21 @@ class AllVegetableTableViewController: UITableViewController{
         
         tableView.reloadData()
     }
+    private func buyVegetable(batchID: String, position: Int){
+        db.collection("users").document(String(user!)).updateData(["myPurchasedVegetables": FieldValue.arrayUnion([batchID])])
+        self.vegetables.remove(at: position)
+        
+        tableView.reloadData()
+        
+    }
     
-    /*
+    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-     return true
+     return false
      }
-     */
+     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

@@ -6,8 +6,7 @@ import Firebase
 class VegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
-    
-    
+        
     var vegetables = [Vegetable]()
     
     
@@ -28,7 +27,9 @@ class VegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        
+
+        loadMyPurchasedVegetablesFromWeb()
     }
     
     
@@ -51,7 +52,7 @@ class VegetableTableViewController: UITableViewController{
         //*************************
         
         // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem
+       // navigationItem.leftBarButtonItem = editButtonItem
 
         loadMyPurchasedVegetablesFromWeb()
  
@@ -59,10 +60,9 @@ class VegetableTableViewController: UITableViewController{
     
   
     private func loadMyPurchasedVegetablesFromWeb() {
-        
+        self.vegetables = []
         var myPurchasedVegetables = [String]()
       
-        print(1)
         self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
                 if document.data()?["myPurchasedVegetables"]  == nil{
@@ -75,9 +75,7 @@ class VegetableTableViewController: UITableViewController{
                             print("Error getting documents: \(err)")
                         } else {
                             for document in querySnapshot!.documents {
-                                //
-                                //
-                                let photo1 = UIImage(named: "vegetable1")
+
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -91,12 +89,11 @@ class VegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
-                                print("name: " , name)
-                                print("batchID: " , batchID)
-                                
+                                let photo = UIImage(named: name)
+
                                 guard let vegetable = Vegetable(batchID: batchID,
                                                                 name: name,
-                                                                photo: photo1,
+                                                                photo: photo,
                                                                 origin: origin,
                                                                 cultivation: cultivation,
                                                                 weight: weight,
@@ -131,7 +128,6 @@ class VegetableTableViewController: UITableViewController{
         
     }
     
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,22 +159,23 @@ class VegetableTableViewController: UITableViewController{
             vegetable = filteredVegetables[indexPath.row]
         } else {
             vegetable = vegetables[indexPath.row]
-        }
+        } 
         
         cell.nameLabel.text = vegetable.name
         cell.photoImageView.image = vegetable.photo
+        cell.buyButton = nil
         
         return cell
     }
     
     
-    /*
+    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-     return true
+     return false
      }
-     */
+     
     // Override to support editing the table view.
 /*    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

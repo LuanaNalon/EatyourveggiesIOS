@@ -13,12 +13,17 @@ import FirebaseFirestore
 class LogoutViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var noLogoutButton: UIButton!
     @IBOutlet weak var labelError: UILabel!
     override func viewDidLoad() {
         labelError.alpha = 0
-        Utilities.styleCancelButton(logoutButton)
-        
+        setUpElements()
         super.viewDidLoad()
+    }
+    func setUpElements(){
+        Utilities.styleFilledButton(logoutButton)
+        Utilities.styleHollowButton(noLogoutButton)
     }
     func showError(_ message:String) {
         labelError.text = message
@@ -42,10 +47,24 @@ class LogoutViewController: UIViewController {
         view.window?.rootViewController = viewController
         view.window?.makeKeyAndVisible()
     }
+    func transitionToMenu() {
+        
+        let menuviewController =
+            storyboard?.instantiateViewController(identifier:
+                                                    Constants.Storyboard.menuViewcontroller) as?
+            MenuViewController
+        
+        view.window?.rootViewController = menuviewController
+        view.window?.makeKeyAndVisible()
+    }
     
     @IBAction func logoutTapped(_ sender: Any) {
         logout()
         transitionToHome()
+    }
+    
+    @IBAction func noTapped(_ sender: Any) {
+        transitionToMenu()
     }
     
 }

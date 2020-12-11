@@ -5,36 +5,30 @@ import Firebase
 
 class FavoriteVegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
+    
     var user = Auth.auth().currentUser?.uid
     
-    
     var vegetables = [Vegetable]()
-    
-    
+
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredVegetables: [Vegetable] = []
     
-  
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        
+        loadMyFavoriteVegetablesFromWeb()
+
     }
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    
-    
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,54 +50,16 @@ class FavoriteVegetableTableViewController: UITableViewController{
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        
-        
-        
        // storeDataDummy()s
         loadMyFavoriteVegetablesFromWeb()
         
        // loadSampleVegetables()
         
     }
-   
-    private func storeDataDummy(){
-        func randomString(length: Int) -> String {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            return String((0..<length).map{ _ in letters.randomElement()! })
-        }
-        let array = ["Alface", "Tomate", "Pepino", "Couve","Courgete","Cenoura","Beterraba","Couve-Coracao-Boi","Batata","Batata Doce","Broculos"]
-        
-        for item in 1...250 {
-            db.collection("vegetables").addDocument(data:[
-                "batchID": randomString(length: 8),
-                "co2": String(Int.random(in: 0...100)),
-                "cultivation":                "Tradicional",
-                "eDate":                "13/12/2020",
-                "hDate":                "12/11/2020",
-                "humidity":                String(Int.random(in: 0...100)),
-                "localization":           "Coimbra",
-                "name":   array.randomElement()!,
-                "origin":                "Holanda",
-                "shock": String(Int.random(in: 0...10)),
-                "temperature": String(Int.random(in: 0...50)),
-                "tilt": String(Int.random(in: 0...10)),
-                "weight":String(Int.random(in: 0...100000))
-                
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-        }
-        
-    }
-    
+
     private func loadMyFavoriteVegetablesFromWeb() {
-        
+        self.vegetables = []
         var myFavoriteVegetables = [String]()
-        print(1)
         self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
                 
@@ -119,9 +75,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
                             print("Error getting documents: \(err)")
                         } else {
                             for document in querySnapshot!.documents {
-                                //
-                                //
-                                let photo1 = UIImage(named: "vegetable1")
+                            
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -135,8 +89,9 @@ class FavoriteVegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
-                                
-                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1, origin: origin,
+                                let photo = UIImage(named: name)
+
+                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo, origin: origin,
                                     cultivation: cultivation,
                                     weight: weight,
                                     hDate: hDate,
@@ -203,7 +158,36 @@ class FavoriteVegetableTableViewController: UITableViewController{
         cell.nameLabel.text = vegetable.name
         cell.photoImageView.image = vegetable.photo
         
+        cell.buyButtonAction = { [unowned self] in
+             
+            let alert = UIAlertController(title: "Add to my purchesed vegetables!", message: "Added  \(vegetable.name)", preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+             alert.addAction(okAction)
+                   
+             self.present(alert, animated: true, completion: nil)
+            
+            buyVegetable(batchID: vegetable.batchID,position: indexPath)
+            
+           }
+        
         return cell
+    }
+    private func buyVegetable(batchID: String, position: IndexPath){
+        db.collection("users").document(String(user!)).updateData(["myPurchasedVegetables": FieldValue.arrayUnion([batchID])])
+               removeFavoriteFromList(batchID: batchID, position: position)
+        tableView.reloadData()
+        
+    }
+    private func removeFavoriteFromList(batchID: String, position: IndexPath){
+        
+        db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[position.row].batchID])
+        ])
+        
+        
+        self.vegetables.remove(at: position.row)
+        
+        tableView.deleteRows(at: [position], with: .fade)
+       
     }
     
     
@@ -218,14 +202,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     
         if editingStyle == .delete {
-            // Delete the row from the data source
-            vegetables.remove(at: indexPath.row)
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[indexPath.row].batchID])
-            ])
-            
+            removeFavoriteFromList(batchID: "String", position: indexPath)
             
             
         } else if editingStyle == .insert {

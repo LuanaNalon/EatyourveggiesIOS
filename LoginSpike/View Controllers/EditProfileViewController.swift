@@ -15,6 +15,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
+    let storage = Storage.storage().reference()
     
     @IBOutlet weak var lastNameTextfield: UITextField!
     @IBOutlet weak var firstNameTextfield: UITextField!
@@ -63,6 +64,17 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
                 self.showError("Unable to get user data")
             }
         }
+        // Create a reference from a Google Cloud Storage URI
+        let storage = Storage.storage().reference(forURL: "gs://loginspike-47cbc.appspot.com/profilePhotos/"+String(user!)+".png")
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        storage.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if error != nil {
+            return
+          } else {
+            let image = UIImage(data: data!)
+            self.photoProfileView.image = image
+          }
+        }
         
     }
     
@@ -90,26 +102,36 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey :
                                 Any]) {
+        // Dismiss the picker.
+        picker.dismiss(animated: true, completion: nil)
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage =
-                info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+                info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        // Set photoImageView to display the selected image.
-        
+        guard let imageData = selectedImage.pngData() else {
+            return
+        }
         photoProfileView.image = selectedImage
+        //upload image data
+        storage.child("profilePhotos/"+String(user!)+".png").putData(imageData, metadata: nil) { (_, error) in
+            guard error == nil else {
+                self.showError("Failed to upload")
+                return
+            }
+        }
         
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changePhotoTapped(_ sender: Any) {
+        
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
         // Only allow photos to be picked, not taken.
         imagePickerController.sourceType = .photoLibrary
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
         
     }

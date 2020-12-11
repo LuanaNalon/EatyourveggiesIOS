@@ -50,6 +50,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(singUpButton)
+    
     }
     //check the fields and validate that the data is correct.
     func validateFields() -> String?{
@@ -60,14 +61,6 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             return "Please fill in all fields."
         }
-        //check if the password is secure
-        //let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
-        
-        // if Utilities.isPasswordValid(password) == false {
-        //Password isn't secure enough
-        //    return "Please make sure your password is at least 8 characters, contains a special character and a number."
-        //}
-        //todo add method to check an email
         return nil
     }
     
@@ -117,13 +110,23 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
                     let db = Firestore.firestore()
                     
                     db.collection("users").document(result!.user.uid).setData( ["firstname":firstName,
-                                                              "lastname":lastName, "uid": result!.user.uid]) { (error) in
-                        
+                                                                                "lastname":lastName,
+                                                                                "uid": result!.user.uid]) { (error) in
                         if error != nil {
                             //show error message
-                            self.showError("Error saving user data.")
+                            self.showError("Error saving user data")
                         }
                         
+                    }
+                    guard let imageData = self.photoImageView.image?.pngData() else {
+                        return
+                    }
+                    //upload image data
+                    self.storage.child("profilePhotos/"+String(result!.user.uid)+".png").putData(imageData, metadata: nil) { (_, error) in
+                        guard error == nil else {
+                            self.showError("Failed to upload")
+                            return
+                        }
                     }
                     let alert = UIAlertController(title: "Registration done successfully!", message: nil, preferredStyle: .alert)
                     self.present(alert, animated: true)
@@ -162,18 +165,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
                 info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        guard let imageData = selectedImage.pngData() else {
-            return
-        }
         photoImageView.image = selectedImage
-        //upload image data
-        let number = arc4random()
-        storage.child("profilePhotos/"+String(number)+".png").putData(imageData, metadata: nil) { (_, error) in
-            guard error == nil else {
-                self.showError("Failed to upload")
-                return
-            }
-        }
         
     }
     
