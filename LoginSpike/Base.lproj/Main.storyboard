@@ -868,13 +868,23 @@
                                             <rect key="frame" x="321" y="23" width="73" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" systemColor="systemGray2Color"/>
-                                            <state key="normal" title="Button">
+                                            <state key="normal">
                                                 <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Xn6-cz-nVr">
+                                            <rect key="frame" x="266" y="28" width="51" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                            <state key="normal" title="Buy it!">
+                                                <color key="titleColor" systemColor="labelColor"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                             </state>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buyButton" destination="Xn6-cz-nVr" id="qDT-Q1-7SB"/>
                                     <outlet property="favButton" destination="32m-e2-NnW" id="FTG-kC-ORv"/>
                                     <outlet property="nameLabel" destination="XvG-ct-rtA" id="LgU-T2-lyq"/>
                                     <outlet property="photoImageView" destination="gw1-86-5oz" id="Wxf-hG-jwE"/>
@@ -941,6 +951,9 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="power" catalog="system" width="128" height="124"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

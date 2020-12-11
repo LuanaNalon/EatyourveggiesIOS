@@ -25,7 +25,7 @@ class AllVegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        loadAllVegetablesFromWeb()
     }
     
     override func viewDidLoad() {
@@ -226,6 +226,18 @@ class AllVegetableTableViewController: UITableViewController{
             
            }
         
+        cell.buyButtonAction = { [unowned self] in
+             
+            let alert = UIAlertController(title: "Add to my purchesed vegetables!", message: "Added  \(vegetable.name)", preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+             alert.addAction(okAction)
+                   
+             self.present(alert, animated: true, completion: nil)
+            
+            buyVegetable(batchID: vegetable.batchID,position: indexPath.row)
+            
+           }
+        
         
         return cell
     }
@@ -235,6 +247,13 @@ class AllVegetableTableViewController: UITableViewController{
         self.vegetables.remove(at: position)
         
         tableView.reloadData()
+    }
+    private func buyVegetable(batchID: String, position: Int){
+        db.collection("users").document(String(user!)).updateData(["myPurchasedVegetables": FieldValue.arrayUnion([batchID])])
+        self.vegetables.remove(at: position)
+        
+        tableView.reloadData()
+        
     }
     
     /*
