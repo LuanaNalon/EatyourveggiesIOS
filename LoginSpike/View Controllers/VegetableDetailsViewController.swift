@@ -24,9 +24,6 @@ class VegetableDetailsViewController: UIViewController,UITextFieldDelegate, UIIm
     @IBOutlet weak var tiltField: UITextField!
     @IBOutlet weak var shockField: UITextField!
     
-    @IBOutlet weak var returnButton: UIButton!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
@@ -61,18 +58,5 @@ class VegetableDetailsViewController: UIViewController,UITextFieldDelegate, UIIm
             tiltField.text = vegetable.tilt
             shockField.text = vegetable.shock
         }
-    }
-    func transitionToVegetablesView() {
-        
-        let vegetableviewController =
-            storyboard?.instantiateViewController(identifier: Constants.Storyboard.vegetableViewController) as?
-            VegetableTableViewController
-        
-        view.window?.rootViewController = vegetableviewController
-        view.window?.makeKeyAndVisible()
-    }
-   
-    @IBAction func returnTapped(_ sender: Any) {
-        transitionToVegetablesView()
     }
 }

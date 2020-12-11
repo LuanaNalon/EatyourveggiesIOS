@@ -3,9 +3,9 @@ import UIKit
 import os.log
 import Firebase
 
-class VegetableTableViewController: UITableViewController{
+class FavoriteVegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
-    let user = Auth.auth().currentUser?.uid
+    var user = Auth.auth().currentUser?.uid
     
     
     var vegetables = [Vegetable]()
@@ -15,6 +15,12 @@ class VegetableTableViewController: UITableViewController{
     
     var filteredVegetables: [Vegetable] = []
     
+  
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -26,10 +32,7 @@ class VegetableTableViewController: UITableViewController{
         return searchController.isActive && !isSearchBarEmpty
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
+    
     
     
     override func viewDidLoad() {
@@ -52,24 +55,65 @@ class VegetableTableViewController: UITableViewController{
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
-
-        loadMyPurchasedVegetablesFromWeb()
- 
+        
+        
+        
+        
+       // storeDataDummy()s
+        loadMyFavoriteVegetablesFromWeb()
+        
+       // loadSampleVegetables()
+        
+    }
+   
+    private func storeDataDummy(){
+        func randomString(length: Int) -> String {
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            return String((0..<length).map{ _ in letters.randomElement()! })
+        }
+        let array = ["Alface", "Tomate", "Pepino", "Couve","Courgete","Cenoura","Beterraba","Couve-Coracao-Boi","Batata","Batata Doce","Broculos"]
+        
+        for item in 1...250 {
+            db.collection("vegetables").addDocument(data:[
+                "batchID": randomString(length: 8),
+                "co2": String(Int.random(in: 0...100)),
+                "cultivation":                "Tradicional",
+                "eDate":                "13/12/2020",
+                "hDate":                "12/11/2020",
+                "humidity":                String(Int.random(in: 0...100)),
+                "localization":           "Coimbra",
+                "name":   array.randomElement()!,
+                "origin":                "Holanda",
+                "shock": String(Int.random(in: 0...10)),
+                "temperature": String(Int.random(in: 0...50)),
+                "tilt": String(Int.random(in: 0...10)),
+                "weight":String(Int.random(in: 0...100000))
+                
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+        
     }
     
-  
-    private func loadMyPurchasedVegetablesFromWeb() {
+    private func loadMyFavoriteVegetablesFromWeb() {
         
-        var myPurchasedVegetables = [String]()
-      
+        var myFavoriteVegetables = [String]()
         print(1)
         self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
-                if document.data()?["myPurchasedVegetables"]  == nil{
-                    myPurchasedVegetables = [""]
+                
+                if document.data()?["myFavoriteVegetables"]  == nil   {
+                    myFavoriteVegetables = [""]
                 }
                 else{
-                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]!  as! [String]
+                
+                myFavoriteVegetables = document.data()!["myFavoriteVegetables"]! as! [String]
+                
                 self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
@@ -91,46 +135,37 @@ class VegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
-                                print("name: " , name)
-                                print("batchID: " , batchID)
                                 
-                                guard let vegetable = Vegetable(batchID: batchID,
-                                                                name: name,
-                                                                photo: photo1,
-                                                                origin: origin,
-                                                                cultivation: cultivation,
-                                                                weight: weight,
-                                                                hDate: hDate,
-                                                                eDate: eDate,
-                                                                localization: localization,
-                                                                temperature: temperature,
-                                                                humidity: humidity,
-                                                                co2: co2,
-                                                                tilt: tilt,
-                                                                shock: shock) else {
+                                guard let vegetable = Vegetable(batchID: batchID, name: name, photo: photo1, origin: origin,
+                                    cultivation: cultivation,
+                                    weight: weight,
+                                    hDate: hDate,
+                                    eDate: eDate,
+                                    localization: localization,
+                                    temperature: temperature,
+                                    humidity: humidity,
+                                    co2: co2,
+                                    tilt: tilt,
+                                    shock: shock) else {
                                     fatalError("Unable to instantiate vegetable")
                                 }
                                 self.vegetables += [vegetable]
                                 print("Nivel 1: ",self.vegetables.count)
                                 
-                                
-                                
                             }
                             
-                            self.vegetables = self.vegetables.filter { myPurchasedVegetables.contains($0.batchID) }
+                            self.vegetables = self.vegetables.filter { myFavoriteVegetables.contains($0.batchID) }
                             self.tableView.reloadData()
-
                         }
                     }
                 }
-                
             } else {
                 print("Document does not exist")
             }
         }
         
     }
-    
+
     
     // MARK: - Table view data source
     
@@ -180,32 +215,25 @@ class VegetableTableViewController: UITableViewController{
      }
      */
     // Override to support editing the table view.
-/*    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
         if editingStyle == .delete {
             // Delete the row from the data source
             vegetables.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[indexPath.row].batchID])
+            ])
+            
+            
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
-    */
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     
     // MARK: - Navigation
@@ -217,8 +245,8 @@ class VegetableTableViewController: UITableViewController{
         switch(segue.identifier ?? "") {
         case "AddItem":
             os_log("Adding a new vegetable.", log: OSLog.default, type: .debug)
-        case "showDetails":
-            guard let vegetableDetailViewController = segue.destination as? VegetableDetailsViewController else {
+        case "ShowDetail":
+            guard let vegetableDetailsViewController = segue.destination as? VegetableDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedVegetableCell = sender as? VegetableTableViewCell else {
@@ -229,12 +257,18 @@ class VegetableTableViewController: UITableViewController{
             }
             
             let selectedVegetable = vegetables[indexPath.row]
-            vegetableDetailViewController.vegetable = selectedVegetable
+            vegetableDetailsViewController.vegetable = selectedVegetable
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
-
+    
+    
+    
+    
+    
+    
+    
     @IBAction func unwindToVegetableList(sender: UIStoryboardSegue) {
         
         if let sourceViewController = sender.source as? VegetableDetailsViewController,
@@ -266,7 +300,7 @@ class VegetableTableViewController: UITableViewController{
     
     
 }
-extension VegetableTableViewController: UISearchResultsUpdating {
+extension FavoriteVegetableTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let category = "vategory"
@@ -274,7 +308,7 @@ extension VegetableTableViewController: UISearchResultsUpdating {
     }
 }
 
-extension VegetableTableViewController: UISearchBarDelegate {
+extension FavoriteVegetableTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         let category = "vategory"
         filterContentForSearchText(searchBar.text!, category: category)

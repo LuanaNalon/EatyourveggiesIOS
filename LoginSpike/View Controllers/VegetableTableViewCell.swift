@@ -4,9 +4,7 @@ import UIKit
 class VegetableTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    //@IBOutlet weak var ratingControl: UIStackView!
-   // @IBOutlet weak var ratingControl: RatingControl!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
