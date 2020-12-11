@@ -6,8 +6,7 @@ import Firebase
 class VegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
-    
-    
+        
     var vegetables = [Vegetable]()
     
     
@@ -59,6 +58,7 @@ class VegetableTableViewController: UITableViewController{
     
   
     private func loadMyPurchasedVegetablesFromWeb() {
+        var photo1 = UIImage(named: "vegetable1")
         
         var myPurchasedVegetables = [String]()
       
@@ -77,7 +77,6 @@ class VegetableTableViewController: UITableViewController{
                             for document in querySnapshot!.documents {
                                 //
                                 //
-                                let photo1 = UIImage(named: "vegetable1")
                                 let batchID = document.get("batchID") as! String
                                 let name = document.get("name") as! String
                                 let origin = document.get("origin") as! String
@@ -91,6 +90,17 @@ class VegetableTableViewController: UITableViewController{
                                 let co2 = document.get("co2") as! String
                                 let tilt = document.get("tilt") as! String
                                 let shock = document.get("shock") as! String
+                                // Create a reference from a Google Cloud Storage URI
+                                let storage = Storage.storage().reference(forURL: "gs://loginspike-47cbc.appspot.com/productPhotos/"+String(name)+".png")
+                                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                                storage.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                  if error != nil {
+                                    photo1 = UIImage(named: "vegetable1")
+                                  } else {
+                                    let image = UIImage(data: data!)
+                                    photo1 = image
+                                  }
+                                }
                                 print("name: " , name)
                                 print("batchID: " , batchID)
                                 
@@ -130,7 +140,6 @@ class VegetableTableViewController: UITableViewController{
         }
         
     }
-    
     
     // MARK: - Table view data source
     
