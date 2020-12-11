@@ -11,11 +11,11 @@
 		04615D23258029C8008FEF5D /* FavoriteVegetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04615D22258029C7008FEF5D /* FavoriteVegetableTableViewController.swift */; };
 		04615D2725802F9A008FEF5D /* FavoriteVegetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04615D2625802F99008FEF5D /* FavoriteVegetableTableViewCell.swift */; };
 		04615D2A258034FE008FEF5D /* FavoriteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04615D29258034FE008FEF5D /* FavoriteControl.swift */; };
-		046DA1B4257D4E940091D21D /* VegetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DA1B3257D4E940091D21D /* VegetableViewController.swift */; };
 		047A2D62257C4BEA003755EB /* VegetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D61257C4BEA003755EB /* VegetableTableViewController.swift */; };
 		047A2D7A257C4E44003755EB /* Vegetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D79257C4E44003755EB /* Vegetable.swift */; };
 		047A2D7F257C5CEA003755EB /* VegetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */; };
 		D5B84AF246D163E5E5F55803 /* Pods_LoginSpike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */; };
+		E202FBFC2584361A00A26808 /* veggies.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E202FBFB2584361A00A26808 /* veggies.mp4 */; };
 		E21D13AC257BFE0E00FFD21C /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */; };
 		E244554E257D92C400B42DDC /* VegetableDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */; };
 		E24B1D302571C15D00D3A8D3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */; };
@@ -29,7 +29,6 @@
 		E2A5AA1F25719CAD00A7A406 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */; };
 		E2A9BD952576CB380017C4DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD942576CB380017C4DE /* Constants.swift */; };
 		E2A9BD982576E6590017C4DE /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9BD972576E6580017C4DE /* SingUpViewController.swift */; };
-		E2AB37CE257D144F00489529 /* veggies.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E2AB37CD257D144F00489529 /* veggies.mp4 */; };
 		E2B8D175257BE24100248030 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8D174257BE24100248030 /* EditProfileViewController.swift */; };
 		E2B8D17F257BE6AD00248030 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8D17E257BE6AD00248030 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
@@ -39,12 +38,12 @@
 		04615D22258029C7008FEF5D /* FavoriteVegetableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteVegetableTableViewController.swift; sourceTree = "<group>"; };
 		04615D2625802F99008FEF5D /* FavoriteVegetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteVegetableTableViewCell.swift; sourceTree = "<group>"; };
 		04615D29258034FE008FEF5D /* FavoriteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteControl.swift; sourceTree = "<group>"; };
-		046DA1B3257D4E940091D21D /* VegetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableViewController.swift; sourceTree = "<group>"; };
 		047A2D61257C4BEA003755EB /* VegetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableTableViewController.swift; sourceTree = "<group>"; };
 		047A2D79257C4E44003755EB /* Vegetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vegetable.swift; sourceTree = "<group>"; };
 		047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VegetableTableViewCell.swift; path = "LoginSpike/View Controllers/VegetableTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28EFD0DB7EA4BD0880DAEEB /* Pods-LoginSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.release.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.release.xcconfig"; sourceTree = "<group>"; };
+		E202FBFB2584361A00A26808 /* veggies.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = veggies.mp4; path = ../../../../../Downloads/veggies.mp4; sourceTree = "<group>"; };
 		E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableDetailsViewController.swift; sourceTree = "<group>"; };
 		E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -60,7 +59,6 @@
 		E2A5AA1E25719CAD00A7A406 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E2A9BD942576CB380017C4DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2A9BD972576E6580017C4DE /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
-		E2AB37CD257D144F00489529 /* veggies.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = veggies.mp4; sourceTree = "<group>"; };
 		E2B8D174257BE24100248030 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E2B8D17E257BE6AD00248030 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		FF7AA09354E4242D4163D78B /* Pods-LoginSpike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.debug.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,7 +160,7 @@
 		E2AB37CC257D142200489529 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				E2AB37CD257D144F00489529 /* veggies.mp4 */,
+				E202FBFB2584361A00A26808 /* veggies.mp4 */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -237,8 +235,8 @@
 			files = (
 				E2A5AA1625719C0100A7A406 /* LaunchScreen.storyboard in Resources */,
 				E24B1D352571CABE00D3A8D3 /* GoogleService-Info.plist in Resources */,
-				E2AB37CE257D144F00489529 /* veggies.mp4 in Resources */,
 				E2A5AA1325719C0100A7A406 /* Assets.xcassets in Resources */,
+				E202FBFC2584361A00A26808 /* veggies.mp4 in Resources */,
 				E2A5AA1125719BFE00A7A406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
