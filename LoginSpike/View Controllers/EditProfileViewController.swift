@@ -16,7 +16,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate,
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.uid
     let storage = Storage.storage().reference()
-
     
     @IBOutlet weak var lastNameTextfield: UITextField!
     @IBOutlet weak var firstNameTextfield: UITextField!

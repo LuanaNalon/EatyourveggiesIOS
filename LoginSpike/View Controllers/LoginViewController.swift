@@ -44,13 +44,6 @@ class LoginViewController: UIViewController {
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             return "Please fill in all fields."
         }
-        //check if the password is secure
-        //    let password = passwordTextField.text!.trimmingCharacters(in:  .whitespacesAndNewlines)
-        
-        //    if Utilities.isPasswordValid(password) == false {
-        //Password isn't secure enough
-        //      return "Please make sure your password is at least 8 characters, contains a special character and a number."
-        //   }
         return nil
     }
     

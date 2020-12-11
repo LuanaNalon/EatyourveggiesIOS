@@ -114,7 +114,7 @@ class SingUpViewController: UIViewController,UITextFieldDelegate,
                                                                                 "uid": result!.user.uid]) { (error) in
                         if error != nil {
                             //show error message
-                            self.showError("Error saving user data.")
+                            self.showError("Error saving user data")
                         }
                         
                     }
