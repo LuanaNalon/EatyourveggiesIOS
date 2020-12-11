@@ -23,6 +23,10 @@ class AllVegetableTableViewController: UITableViewController{
         return searchController.isActive && !isSearchBarEmpty
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,16 +91,25 @@ class AllVegetableTableViewController: UITableViewController{
     private func loadAllVegetablesFromWeb() {
         
         var myVegetablesToRemoveFromAll = [String]()
-        let user = "6OUXNouLZ84WQVYneeqM"
+        
         print(1)
-        self.db.collection("users").document(user).getDocument{ (document, error) in
+        self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
+                if document.data()?["myFavoriteVegetables"]  == nil   {
+                    myVegetablesToRemoveFromAll = [""]
+                }
+                else{
                 myVegetablesToRemoveFromAll = document.data()!["myFavoriteVegetables"]! as! [String]
-                myVegetablesToRemoveFromAll += document.data()!["myPurchasedVegetables"]! as! [String]
-                
+                }
+                if  document.data()?["myPurchasedVegetables"] == nil {
+                    
+                }else{
+                    myVegetablesToRemoveFromAll += document.data()!["myPurchasedVegetables"]! as! [String]
 
-                self.db.collection("vegetables").whereField("batchID", notIn: myVegetablesToRemoveFromAll)
-                    .getDocuments() { (querySnapshot, err)   in
+                }
+                
+                
+                self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
@@ -132,6 +145,9 @@ class AllVegetableTableViewController: UITableViewController{
                                     fatalError("Unable to instantiate vegetable")
                                 }
                                 self.vegetables += [vegetable]
+                              
+                                self.vegetables = self.vegetables.filter { !myVegetablesToRemoveFromAll.contains($0.batchID) }
+                                
                                 print("Nivel 1: ",self.vegetables.count)
                                 
                                 
@@ -141,40 +157,15 @@ class AllVegetableTableViewController: UITableViewController{
                         }
                     }
                 
+                
+            
+                
             } else {
                 print("Document does not exist")
             }
         }
     }
-    /*
-    private func loadSampleVegetables() {
-        
-        
-        let photo1 = UIImage(named: "vegetable1")
-        
-        let photo2 = UIImage(named: "vegetable2")
-        let photo3 = UIImage(named: "vegetable3")
-        
-        guard let vegetable1 = Vegetable(batchID:"3213123", name: "Caprese Salad", photo: photo1) else {
-            fatalError("Unable to instantiate vegetable1")
-        }
-        
-        guard let vegetable2 = Vegetable(batchID:"32131df23", name: "Chicken and Potatoes", photo: photo2) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        
-        guard let vegetable3 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        guard let vegetable4 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        
-        
-        vegetables += [vegetable1, vegetable2, vegetable3, vegetable4]
-        
-    }
- */
+    
     
     // MARK: - Table view data source
     
@@ -229,8 +220,8 @@ class AllVegetableTableViewController: UITableViewController{
         return cell
     }
     private func removeFavoriteFromList(batchID: String, position: Int){
-        let user = "6OUXNouLZ84WQVYneeqM"
-        db.collection("users").document(String(user)).updateData(["myFavoriteVegetables": FieldValue.arrayUnion([batchID])])
+        
+        db.collection("users").document(String(user!)).updateData(["myFavoriteVegetables": FieldValue.arrayUnion([batchID])])
         self.vegetables.remove(at: position)
         
         tableView.reloadData()

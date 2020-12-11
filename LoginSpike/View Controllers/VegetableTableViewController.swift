@@ -16,9 +16,6 @@ class VegetableTableViewController: UITableViewController{
     var filteredVegetables: [Vegetable] = []
     
     
-    
-    
-    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
@@ -27,6 +24,11 @@ class VegetableTableViewController: UITableViewController{
     
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     
@@ -59,18 +61,16 @@ class VegetableTableViewController: UITableViewController{
     private func loadMyPurchasedVegetablesFromWeb() {
         
         var myPurchasedVegetables = [String]()
-        let user = "6OUXNouLZ84WQVYneeqM"
+      
         print(1)
-        self.db.collection("users").document(user).getDocument{ (document, error) in
+        self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
-                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]! as! [String]
-                print("dentro do doc: ",myPurchasedVegetables  )
-                print(2)
-                
-                
-                print("fora: ", myPurchasedVegetables)
-                self.db.collection("vegetables").whereField("batchID", in: myPurchasedVegetables)
-                    .getDocuments() { (querySnapshot, err)   in
+                if document.data()?["myPurchasedVegetables"]  == nil{
+                    myPurchasedVegetables = [""]
+                }
+                else{
+                myPurchasedVegetables = document.data()!["myPurchasedVegetables"]!  as! [String]
+                self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
@@ -116,9 +116,13 @@ class VegetableTableViewController: UITableViewController{
                                 
                                 
                             }
+                            
+                            self.vegetables = self.vegetables.filter { myPurchasedVegetables.contains($0.batchID) }
                             self.tableView.reloadData()
+
                         }
                     }
+                }
                 
             } else {
                 print("Document does not exist")
@@ -176,7 +180,7 @@ class VegetableTableViewController: UITableViewController{
      }
      */
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+/*    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             vegetables.remove(at: indexPath.row)
@@ -187,7 +191,7 @@ class VegetableTableViewController: UITableViewController{
         }
     }
     
-    
+    */
     /*
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

@@ -5,7 +5,7 @@ import Firebase
 
 class FavoriteVegetableTableViewController: UITableViewController{
     let db = Firestore.firestore()
-    let user = Auth.auth().currentUser?.uid
+    var user = Auth.auth().currentUser?.uid
     
     
     var vegetables = [Vegetable]()
@@ -15,9 +15,12 @@ class FavoriteVegetableTableViewController: UITableViewController{
     
     var filteredVegetables: [Vegetable] = []
     
+  
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -28,6 +31,8 @@ class FavoriteVegetableTableViewController: UITableViewController{
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -50,13 +55,17 @@ class FavoriteVegetableTableViewController: UITableViewController{
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
-       // storeDataDummy()
+        
+        
+        
+        
+       // storeDataDummy()s
         loadMyFavoriteVegetablesFromWeb()
         
        // loadSampleVegetables()
         
     }
-    
+   
     private func storeDataDummy(){
         func randomString(length: Int) -> String {
             let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -94,18 +103,18 @@ class FavoriteVegetableTableViewController: UITableViewController{
     private func loadMyFavoriteVegetablesFromWeb() {
         
         var myFavoriteVegetables = [String]()
-        let user = "6OUXNouLZ84WQVYneeqM"
         print(1)
-        self.db.collection("users").document(user).getDocument{ (document, error) in
+        self.db.collection("users").document(user!).getDocument{ (document, error) in
             if let document = document, document.exists {
+                
+                if document.data()?["myFavoriteVegetables"]  == nil   {
+                    myFavoriteVegetables = [""]
+                }
+                else{
+                
                 myFavoriteVegetables = document.data()!["myFavoriteVegetables"]! as! [String]
-                print("dentro do doc: ",myFavoriteVegetables  )
-                print(2)
                 
-                
-                print("fora: ", myFavoriteVegetables)
-                self.db.collection("vegetables").whereField("batchID", in: myFavoriteVegetables)
-                    .getDocuments() { (querySnapshot, err)   in
+                self.db.collection("vegetables").getDocuments() { (querySnapshot, err)   in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
@@ -143,48 +152,20 @@ class FavoriteVegetableTableViewController: UITableViewController{
                                 self.vegetables += [vegetable]
                                 print("Nivel 1: ",self.vegetables.count)
                                 
-                                
-                                
                             }
+                            
+                            self.vegetables = self.vegetables.filter { myFavoriteVegetables.contains($0.batchID) }
                             self.tableView.reloadData()
                         }
                     }
-                
+                }
             } else {
                 print("Document does not exist")
             }
         }
         
     }
-    /*
-    private func loadSampleVegetables() {
-        
-        
-        let photo1 = UIImage(named: "vegetable1")
-        
-        let photo2 = UIImage(named: "vegetable2")
-        let photo3 = UIImage(named: "vegetable3")
-        
-        guard let vegetable1 = Vegetable(batchID:"3213123", name: "Caprese Salad", photo: photo1) else {
-            fatalError("Unable to instantiate vegetable1")
-        }
-        
-        guard let vegetable2 = Vegetable(batchID:"32131df23", name: "Chicken and Potatoes", photo: photo2) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        
-        guard let vegetable3 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        guard let vegetable4 = Vegetable(batchID:"321312ku3", name: "Pasta with Meatballs", photo: photo3) else {
-            fatalError("Unable to instantiate vegetable2")
-        }
-        
-        
-        vegetables += [vegetable1, vegetable2, vegetable3, vegetable4]
-        
-    }
-    */
+
     
     // MARK: - Table view data source
     
@@ -235,31 +216,24 @@ class FavoriteVegetableTableViewController: UITableViewController{
      */
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
         if editingStyle == .delete {
             // Delete the row from the data source
             vegetables.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[indexPath.row].batchID])
+            ])
+            
+            
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     
     // MARK: - Navigation
@@ -288,6 +262,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
+    
     
     
     
