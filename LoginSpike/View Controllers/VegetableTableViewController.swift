@@ -27,6 +27,8 @@ class VegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.vegetables = []
+
         loadMyPurchasedVegetablesFromWeb()
     }
     

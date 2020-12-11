@@ -18,8 +18,8 @@ class FavoriteVegetableTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-       
-        
+      
+        self.favButton.layer.cornerRadius = 5.0
         
         // Add action to perform when the button is tapped
         self.favButton.addTarget(self, action: #selector(favButtonTapped(_:)), for: .touchUpInside)
@@ -35,8 +35,8 @@ class FavoriteVegetableTableViewCell: UITableViewCell {
     @IBAction func favButtonTapped(_ sender: UIButton){
        // if the closure is defined (not nil)
        // then execute the code inside the fav closure
-        favButton.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
        favButtonAction?()
+
      }
     @IBAction func buyButtonTapped(_ sender: UIButton){
        // if the closure is defined (not nil)

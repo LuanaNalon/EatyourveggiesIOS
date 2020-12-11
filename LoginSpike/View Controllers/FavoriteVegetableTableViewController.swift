@@ -19,6 +19,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.vegetables = []
         loadMyFavoriteVegetablesFromWeb()
 
     }
