@@ -27,7 +27,7 @@ class VegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.vegetables = []
+        
 
         loadMyPurchasedVegetablesFromWeb()
     }
@@ -60,6 +60,7 @@ class VegetableTableViewController: UITableViewController{
     
   
     private func loadMyPurchasedVegetablesFromWeb() {
+        self.vegetables = []
         var photo1 = UIImage(named: "vegetable1")
         
         var myPurchasedVegetables = [String]()
@@ -174,10 +175,11 @@ class VegetableTableViewController: UITableViewController{
             vegetable = filteredVegetables[indexPath.row]
         } else {
             vegetable = vegetables[indexPath.row]
-        }
+        } 
         
         cell.nameLabel.text = vegetable.name
         cell.photoImageView.image = vegetable.photo
+        cell.buyButton = nil
         
         return cell
     }

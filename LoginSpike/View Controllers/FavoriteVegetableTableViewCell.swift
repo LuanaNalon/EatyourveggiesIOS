@@ -19,7 +19,7 @@ class FavoriteVegetableTableViewCell: UITableViewCell {
         // Initialization code
         
       
-        self.favButton.layer.cornerRadius = 5.0
+        var buyButtonAction : (() -> ())?
         
         // Add action to perform when the button is tapped
         self.favButton.addTarget(self, action: #selector(favButtonTapped(_:)), for: .touchUpInside)

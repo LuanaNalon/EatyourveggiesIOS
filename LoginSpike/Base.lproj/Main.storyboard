@@ -818,9 +818,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="NFS-8I-CQv">
+                                            <rect key="frame" x="200" y="45" width="93" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                            <state key="normal" title="Buy it!">
+                                                <color key="titleColor" systemColor="labelColor"/>
+                                                <color key="titleShadowColor" systemColor="linkColor"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buyButton" destination="NFS-8I-CQv" id="NxJ-gM-iCf"/>
                                     <outlet property="nameLabel" destination="cUJ-Yb-k4S" id="g1j-bO-O7c"/>
                                     <outlet property="photoImageView" destination="xph-be-79j" id="faN-j5-sLl"/>
                                 </connections>

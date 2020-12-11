@@ -19,7 +19,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.vegetables = []
+        
         loadMyFavoriteVegetablesFromWeb()
 
     }
@@ -103,6 +103,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
     }
     
     private func loadMyFavoriteVegetablesFromWeb() {
+        self.vegetables = []
         var photo1 = UIImage(named: "vegetable1")
         var myFavoriteVegetables = [String]()
         print(1)
@@ -214,7 +215,36 @@ class FavoriteVegetableTableViewController: UITableViewController{
         cell.nameLabel.text = vegetable.name
         cell.photoImageView.image = vegetable.photo
         
+        cell.buyButtonAction = { [unowned self] in
+             
+            let alert = UIAlertController(title: "Add to my purchesed vegetables!", message: "Added  \(vegetable.name)", preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+             alert.addAction(okAction)
+                   
+             self.present(alert, animated: true, completion: nil)
+            
+            buyVegetable(batchID: vegetable.batchID,position: indexPath)
+            
+           }
+        
         return cell
+    }
+    private func buyVegetable(batchID: String, position: IndexPath){
+        db.collection("users").document(String(user!)).updateData(["myPurchasedVegetables": FieldValue.arrayUnion([batchID])])
+               removeFavoriteFromList(batchID: batchID, position: position)
+        tableView.reloadData()
+        
+    }
+    private func removeFavoriteFromList(batchID: String, position: IndexPath){
+        
+        db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[position.row].batchID])
+        ])
+        
+        
+        self.vegetables.remove(at: position.row)
+        
+        tableView.deleteRows(at: [position], with: .fade)
+       
     }
     
     
@@ -229,14 +259,7 @@ class FavoriteVegetableTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     
         if editingStyle == .delete {
-            // Delete the row from the data source
-            vegetables.remove(at: indexPath.row)
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            db.collection("users").document(user!).updateData(["myFavoriteVegetables": FieldValue.arrayRemove([vegetables[indexPath.row].batchID])
-            ])
-            
+            removeFavoriteFromList(batchID: "String", position: indexPath)
             
             
         } else if editingStyle == .insert {

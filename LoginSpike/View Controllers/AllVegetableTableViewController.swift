@@ -25,9 +25,7 @@ class AllVegetableTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.vegetables = []
-
-        loadAllVegetablesFromWeb()
+              loadAllVegetablesFromWeb()
     }
     
     override func viewDidLoad() {
@@ -91,6 +89,7 @@ class AllVegetableTableViewController: UITableViewController{
     }
     
     private func loadAllVegetablesFromWeb() {
+        self.vegetables = []
         var photo1 = UIImage(named: "vegetable1")
         var myVegetablesToRemoveFromAll = [String]()
         
