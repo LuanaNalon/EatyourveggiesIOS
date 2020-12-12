@@ -43,7 +43,7 @@
 		047A2D7E257C5CEA003755EB /* VegetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VegetableTableViewCell.swift; path = "LoginSpike/View Controllers/VegetableTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		46A23F6526D393E74892AD25 /* Pods_LoginSpike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginSpike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28EFD0DB7EA4BD0880DAEEB /* Pods-LoginSpike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginSpike.release.xcconfig"; path = "Target Support Files/Pods-LoginSpike/Pods-LoginSpike.release.xcconfig"; sourceTree = "<group>"; };
-		E202FBFB2584361A00A26808 /* veggies.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = veggies.mp4; path = ../../../../../Downloads/veggies.mp4; sourceTree = "<group>"; };
+		E202FBFB2584361A00A26808 /* veggies.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = veggies.mp4; path = LoginSpike/Media/veggies.mp4; sourceTree = SOURCE_ROOT; };
 		E21D13AB257BFE0E00FFD21C /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		E244554D257D92C400B42DDC /* VegetableDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableDetailsViewController.swift; sourceTree = "<group>"; };
 		E24B1D2F2571C15D00D3A8D3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
